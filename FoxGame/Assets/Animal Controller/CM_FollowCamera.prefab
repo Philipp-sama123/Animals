@@ -222,9 +222,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3422192896936216884}
   - component: {fileID: 3422192896936216885}
+  - component: {fileID: 998783654}
   m_Layer: 0
   m_Name: CM_FollowCamera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,7 +237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3422192896936216886}
-  m_LocalRotation: {x: 0.20303252, y: 0.00000003262602, z: -0.0000000067650454, w: 0.979172}
+  m_LocalRotation: {x: 0.20303509, y: 0, z: 0, w: 0.9791715}
   m_LocalPosition: {x: 0.25, y: 1.2820001, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -244,7 +245,7 @@ Transform:
   - {fileID: 3422192895415098014}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.429, y: 0, z: 0}
 --- !u!114 &3422192896936216885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,3 +281,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 3422192896613951628}
+--- !u!114 &998783654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3422192896936216886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17f551ea46a21a4e97e5c79d2be176b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  racoonController: {fileID: 0}
+  foxController: {fileID: 0}
+  followCam: {fileID: 0}
