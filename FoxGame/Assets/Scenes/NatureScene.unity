@@ -14519,26 +14519,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1230983103}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &998783653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3422192896936216886, guid: bc4021ea37d340941ab64903666ff997,
-    type: 3}
-  m_PrefabInstance: {fileID: 3422192896776319891}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &998783654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998783653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d17f551ea46a21a4e97e5c79d2be176b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  racoonController: {fileID: 828832137}
-  foxController: {fileID: 2029755600}
 --- !u!1001 &1006619643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46079,6 +46059,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 998783654, guid: bc4021ea37d340941ab64903666ff997, type: 3}
+      propertyPath: racoonController
+      value: 
+      objectReference: {fileID: 828832137}
+    - target: {fileID: 998783654, guid: bc4021ea37d340941ab64903666ff997, type: 3}
+      propertyPath: foxController
+      value: 
+      objectReference: {fileID: 2029755600}
+    - target: {fileID: 998783654, guid: bc4021ea37d340941ab64903666ff997, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3422192896936216884, guid: bc4021ea37d340941ab64903666ff997,
         type: 3}
       propertyPath: m_LocalPosition.x
