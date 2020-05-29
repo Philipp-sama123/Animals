@@ -819,11 +819,11 @@ GameObject:
   - component: {fileID: 4984449875337355280}
   - component: {fileID: 6419407676983261102}
   - component: {fileID: 8768723428507795935}
-  - component: {fileID: 164737683}
   - component: {fileID: 164737677}
   - component: {fileID: 164737678}
   - component: {fileID: 164737684}
   - component: {fileID: 164737685}
+  - component: {fileID: 164737683}
   m_Layer: 20
   m_Name: ACRaccoon@Mobile
   m_TagString: Animal
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984449875337355287}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12fd74a46159fd04b9a3d3d643cdb50f, type: 3}
   m_Name: 
@@ -1555,6 +1555,10 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   OverrideStartState: {fileID: 0}
+  isPlayer:
+    UseConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 0}
   groundLayer:
     UseConstant: 1
     ConstantValue:
@@ -1563,10 +1567,6 @@ MonoBehaviour:
     Variable: {fileID: 0}
   currentStance: 0
   defaultStance: 0
-  isPlayer:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
   AnimatorSpeed:
     UseConstant: 1
     ConstantValue: 1
@@ -1588,6 +1588,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   MovementAxis: {x: 0, y: 0, z: 0}
+  MovementAxisRaw: {x: 0, y: 0, z: 0}
   MovementAxisSmoothed: {x: 0, y: 0, z: 0}
   useCameraInput:
     UseConstant: 0
@@ -1597,6 +1598,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  MainCamera: {fileID: 0}
   AdditivePosition: {x: 0, y: 0, z: 0}
   AdditiveRotation: {x: 0, y: 0, z: 0, w: 0}
   SmoothVertical:
@@ -1623,6 +1625,10 @@ MonoBehaviour:
   Rotator: {fileID: 0}
   Anim: {fileID: 4934258950128761627}
   RB: {fileID: 4984449875337355280}
+  StartWithMode:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   modes:
   - active: 1
     ignoreLowerModes: 0
@@ -2409,7 +2415,7 @@ MonoBehaviour:
     showGeneral: 1
     showIndex: 1
     showProperties: 1
-  StartWithMode:
+  sleep:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -2894,9 +2900,12 @@ MonoBehaviour:
   m_SpeedMultiplier: SpeedMultiplier
   m_StateTime: StateTime
   m_Random: Random
+  m_AnimHeight: AnimHeight
   m_DeltaAngle: DeltaAngle
   debugStates: 0
   debugModes: 0
+  ShowAnimParametersOptional: 1
+  ShowAnimParameters: 1
   debugGizmos: 1
 --- !u!54 &4984449875337355280
 Rigidbody:
@@ -2999,6 +3008,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    OnStat:
+      m_PersistentCalls:
+        m_Calls: []
     Below: 0
     Above: 0
     OnStatBelow:
@@ -3073,6 +3085,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     OnStatEmpty:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStat:
       m_PersistentCalls:
         m_Calls: []
     Below: 10
@@ -3196,6 +3211,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     OnStatEmpty:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStat:
       m_PersistentCalls:
         m_Calls: []
     Below: 0
@@ -3986,33 +4004,6 @@ MonoBehaviour:
     AdvancedInteger: 0
     AdvancedBool: 0
     InvertBool: 0
---- !u!114 &164737683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4984449875337355287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Delayed: 0
-  OnEnableEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 774c7acaf3bb1304fb314cd4bd618fcb, type: 2}
-        m_MethodName: Invoke
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1893330411}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &164737677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4109,6 +4100,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
     Variable: {fileID: 0}
+  instantiateTracks: 0
   Tracks: {fileID: 198000013136168986, guid: 7745c70da32263b4e86efaf5c965c60d, type: 3}
   Dust: {fileID: 198000010737321038, guid: f0185de6019ebaa4db45528f37bad8d2, type: 3}
   StepsVolume: 0.2
@@ -4135,6 +4127,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 548162371}
   parameter: Eyes
+--- !u!114 &164737683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984449875337355287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delayed: 0
+  OnEnableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 774c7acaf3bb1304fb314cd4bd618fcb, type: 2}
+        m_MethodName: Invoke
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1893330411}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4984468883050595287
 GameObject:
   m_ObjectHideFlags: 0
