@@ -823,7 +823,8 @@ GameObject:
   - component: {fileID: 164737678}
   - component: {fileID: 164737684}
   - component: {fileID: 164737685}
-  - component: {fileID: 164737683}
+  - component: {fileID: 828832138}
+  - component: {fileID: 828832149}
   m_Layer: 20
   m_Name: ACRaccoon@Mobile
   m_TagString: Animal
@@ -1509,7 +1510,7 @@ MonoBehaviour:
   ModeShowAbilities: 1
   Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 0
+  SelectedMode: 2
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2213,11 +2214,11 @@ MonoBehaviour:
             m_Calls: []
     abilityIndex:
       UseConstant: 1
-      ConstantValue: 0
+      ConstantValue: -1
       Variable: {fileID: 0}
     DefaultIndex:
       UseConstant: 1
-      ConstantValue: 0
+      ConstantValue: -1
       Variable: {fileID: 0}
     OnAbilityIndex:
       m_PersistentCalls:
@@ -2233,7 +2234,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    ResetToDefault: 0
+    ResetToDefault: 1
     allowRotation: 1
     allowMovement: 1
     showGeneral: 1
@@ -4127,7 +4128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 548162371}
   parameter: Eyes
---- !u!114 &164737683
+--- !u!114 &828832138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4136,24 +4137,100 @@ MonoBehaviour:
   m_GameObject: {fileID: 4984449875337355287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c40057955ac3324f9b900fad19f1651, type: 3}
+  m_Script: {fileID: 11500000, guid: 11aead5ee6e6f3a419e6d84b489a7d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delayed: 0
-  OnEnableEvent:
+  active:
+    UseConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 0}
+  LimitAngle:
+    UseConstant: 1
+    ConstantValue: 60
+    Variable: {fileID: 0}
+  Smoothness:
+    UseConstant: 1
+    ConstantValue: 5
+    Variable: {fileID: 0}
+  UseLerp:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  onlyTargets:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Bones:
+  - bone: {fileID: 4982729059401218359}
+    offset: {x: 0, y: -90, z: -90}
+    weight: 1
+  debug: 1
+--- !u!114 &828832149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984449875337355287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf9548d1f32af143802e526c7043914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_active:
+    UseConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 0}
+  m_aimOrigin: {fileID: 4982729059401218359}
+  m_directionSmooth: 10
+  m_aimLayer:
+    UseConstant: 1
+    ConstantValue:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    Variable: {fileID: 0}
+  m_Triggers: 2
+  m_AimTarget: {fileID: 0}
+  m_camera: {fileID: 0}
+  m_screenCenter:
+    UseConstant: 1
+    ConstantValue: {x: 0.5, y: 0.5}
+    Variable: {fileID: 0}
+  rayRadius:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  RayLength: 75
+  RayHits: 3
+  OnAimRayTarget:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 774c7acaf3bb1304fb314cd4bd618fcb, type: 2}
+      - m_Target: {fileID: 11400000, guid: 4bc2ab8546709574cb4c726c9a520da6, type: 2}
         m_MethodName: Invoke
-        m_Mode: 2
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 1893330411}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnScreenCenter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4bc2ab8546709574cb4c726c9a520da6, type: 2}
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  debug: 0
 --- !u!1 &4984468883050595287
 GameObject:
   m_ObjectHideFlags: 0
