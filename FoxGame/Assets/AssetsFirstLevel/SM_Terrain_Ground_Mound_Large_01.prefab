@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5207445465351114298}
   - component: {fileID: 5198011771541388634}
   - component: {fileID: 5188316739697107458}
-  - component: {fileID: 5262298140480371188}
   - component: {fileID: 5212059928720901482}
   m_Layer: 0
   m_Name: SM_Terrain_Ground_Mound_Large_01
@@ -81,25 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &5262298140480371188
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5210681467422285012}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 32c449183e4fb5f409b80be97e6aedbc, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!64 &5212059928720901482
 MeshCollider:
   m_ObjectHideFlags: 0

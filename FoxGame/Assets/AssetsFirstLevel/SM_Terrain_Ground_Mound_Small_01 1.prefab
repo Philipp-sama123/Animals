@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3559597345107826134}
   - component: {fileID: 3531189882783657204}
   - component: {fileID: 3541354554173887432}
-  - component: {fileID: 3468429381331654152}
   m_Layer: 0
   m_Name: SM_Terrain_Ground_Mound_Small_01 1
   m_TagString: Untagged
@@ -80,22 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!95 &3468429381331654152
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563240806482385616}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 347d5172346a337479ed1c0bc6972dc9, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
