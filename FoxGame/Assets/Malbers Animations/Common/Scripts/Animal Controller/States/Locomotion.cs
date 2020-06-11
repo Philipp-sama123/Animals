@@ -57,7 +57,8 @@ namespace MalbersAnimations.Controller
                 var ForwardMov = animal.MovementAxisRaw.z; // Get the Raw movement that enters on the animal witouth any modifications
                 var Dir = animal.TerrainSlope > 0 ? animal.GravityDirection : -animal.Up;
 
-                float SprintMultiplier = animal.Sprint ? (animal.CurrentSpeedModifier.Vertical).Value : 1f; //Check if the animal is sprinting
+                float SprintMultiplier = (animal.CurrentSpeedModifier.Vertical).Value;
+                  SprintMultiplier += animal.Sprint ? 1f  : 0f; //Check if the animal is sprinting
 
                 float scale = animal.ScaleFactor;
                 var RayMultiplier = animal.Pivot_Multiplier * FallMultiplier; //Get the Multiplier

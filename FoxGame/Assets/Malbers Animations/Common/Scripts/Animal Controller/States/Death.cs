@@ -8,31 +8,15 @@ namespace MalbersAnimations.Controller
     {
         [Header("Death Parameters")]
         public bool DisableAllComponents = true;
-        public bool RemoveAllTriggers = false;
-
-        public bool QueueOnFly = true;
+        public bool RemoveAllColliders = false;
 
         public override void Activate()
         {
-            if (QueueOnFly)
-            {
-                if (animal.ActiveStateID == 6)//Means is  Flying
-                {
-                    if (animal.debugStates) Debug.Log(ID.name + " State has being Queue");
-                    animal.ActiveState.AllowExit();
-                    OnQueue = true;
-                    animal.QueueState(this);
-                    return;
-                }
-            }
-
             base.Activate();
 
-            IgnoreLowerStates = true;
+            if (OnQueue) return;
 
-            animal.Mode_Interrupt(); //Stop all modes;
-            //animal.Mode_Stop(); //Stop all modes;
-
+            animal.Mode_Interrupt(); 
             if (DisableAllComponents)
             {
                 var AllComponents = animal.GetComponents<MonoBehaviour>();
@@ -44,7 +28,7 @@ namespace MalbersAnimations.Controller
                 }
 
             }
-            if (RemoveAllTriggers)
+            if (RemoveAllColliders)
             {
                 var AllTriggers = animal.GetComponentsInChildren<Collider>();
 
@@ -56,7 +40,6 @@ namespace MalbersAnimations.Controller
                     }
                 }
             }
-
             animal.StopMoving();
         }
 

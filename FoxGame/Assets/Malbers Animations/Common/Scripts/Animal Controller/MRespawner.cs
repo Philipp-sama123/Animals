@@ -132,7 +132,7 @@ namespace MalbersAnimations.Controller
         {
             activePlayer = Instantiate(playerPrefab, transform.position, transform.rotation) as GameObject;
             activeAnimal = activePlayer.GetComponent<MAnimal>();
-
+          
             activeAnimal.OverrideStartState = RespawnState;
 
             activeAnimal.OnStateChange.AddListener(OnCharacterDead);

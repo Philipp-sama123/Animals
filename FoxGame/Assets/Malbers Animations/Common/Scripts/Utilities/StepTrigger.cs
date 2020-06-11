@@ -8,24 +8,14 @@ namespace MalbersAnimations
     public class StepTrigger : MonoBehaviour
     {
         StepsManager _StepsManager;
-        //Collider col;
         public float WaitNextStep = 0.2f;
 
         [HideInInspector]
-        public AudioSource StepAudio;
-
-        //[HideInInspector]
-        //public Vector3 contactPoint;
+        public AudioSource StepAudio; 
 
         WaitForSeconds wait;
-
-        bool hastrack;                      // Check if already  has a track... don't put another
         bool waitrack;                      // Check if is time to put a track; 
-        public bool HasTrack
-        {
-            get { return hastrack; }
-            set { hastrack = value; }
-        }
+        public bool HasTrack { get; set; }
 
         void Awake()
         {
@@ -53,9 +43,7 @@ namespace MalbersAnimations
             StepAudio.spatialBlend = 1;  //Make the Sound 3D
             if (_StepsManager) StepAudio.volume = _StepsManager.StepsVolume;    
 
-            wait = new WaitForSeconds(WaitNextStep);
-
-           
+            wait = new WaitForSeconds(WaitNextStep); 
         }
 
 
@@ -65,19 +53,19 @@ namespace MalbersAnimations
 
             if (!MalbersTools.CollidersLayer(other, _StepsManager.GroundLayer.Value)) return; //Ignore layers that are not Ground
 
-            if (!waitrack && _StepsManager) 
+            if (!waitrack) 
             {
                  StartCoroutine(WaitForStep());     //Wait Half a Second before making another Step
-
                 _StepsManager.EnterStep(this);
-                hastrack = true;
+                HasTrack = true;
             }
         }
 
         void OnTriggerExit(Collider other)
         {
+            if (_StepsManager == null) return;
             if (!MalbersTools.CollidersLayer(other, _StepsManager.GroundLayer.Value)) return; //Ignore layers that are not Ground
-            hastrack = false; // if the feet is on the air then can put a track
+            HasTrack = false; // if the feet is on the air then can put a track
         }
 
         IEnumerator WaitForStep()

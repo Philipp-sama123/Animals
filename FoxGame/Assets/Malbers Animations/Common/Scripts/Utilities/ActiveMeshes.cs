@@ -171,9 +171,8 @@ namespace MalbersAnimations.Utilities
         [ContextMenu("Create Event Listeners")]
         void CreateListeners()
         {
-            MEventListener listener = GetComponent<MEventListener>();
-
-            if (listener == null) listener = gameObject.AddComponent<MEventListener>();
+            MEventListener listener = GetComponent<MEventListener>() ?? GetComponentInParent<MEventListener>();
+            if (listener == null) listener = transform.root.gameObject.AddComponent<MEventListener>();
             if (listener.Events == null) listener.Events = new List<MEventItemListener>();
 
             MEvent BlendS = MalbersTools.GetInstance<MEvent>("Change Mesh");

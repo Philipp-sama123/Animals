@@ -18,7 +18,7 @@ namespace MalbersAnimations.Controller
         private ReorderableList Reo_List_Speeds;
 
         SerializedProperty
-            S_StateList, S_PivotsList,/* Height,*/ S_Mode_List, Editor_Tabs1, Editor_Tabs2, StartWithMode,/*ModeIndexSelected,*/ OnEnterExitStances, ModeShowAbilities, OnEnterExitStates, RB, Anim, //MovementDeathValue, //PivotPosDir,
+            S_StateList, S_PivotsList,  Height, S_Mode_List, Editor_Tabs1, Editor_Tabs2, StartWithMode, OnEnterExitStances, ModeShowAbilities, OnEnterExitStates, RB, Anim, //MovementDeathValue, //PivotPosDir,
             m_Vertical, m_Horizontal, m_IDFloat, m_IDInt, m_State, m_StateStatus, m_LastState, m_Mode, m_Grounded, m_Movement, m_Random, m_AnimHeight, m_SpeedMultiplier, m_UpDown, /*OnMainPlayer, */currentStance, defaultStance,
             m_Stance, m_Slope, m_Type, m_StateTime, m_DeltaAngle, lockInput, lockMovement, Rotator, animalType, RayCastRadius, MainCamera, sleep,
 
@@ -64,7 +64,7 @@ namespace MalbersAnimations.Controller
             OnEnterExitStances = serializedObject.FindProperty("OnEnterExitStances");
             ModeShowAbilities = serializedObject.FindProperty("ModeShowAbilities");
 
-            //Height = serializedObject.FindProperty("height");
+            Height = serializedObject.FindProperty("height");
            // ModeIndexSelected = serializedObject.FindProperty("ModeIndexSelected");
 
             Editor_Tabs1 = serializedObject.FindProperty("Editor_Tabs1");
@@ -639,6 +639,9 @@ namespace MalbersAnimations.Controller
             }
         }
 
+       
+
+
         private void ShowGeneral()
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -662,9 +665,26 @@ namespace MalbersAnimations.Controller
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             {
                 EditorGUILayout.LabelField("Ground", EditorStyles.boldLabel);
-                EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.LabelField("Height                    (Deprecated)");
-                EditorGUI.EndDisabledGroup(); 
+                //EditorGUI.BeginDisabledGroup(true);
+                //EditorGUILayout.LabelField("Height                    (Deprecated)");
+                //EditorGUI.EndDisabledGroup(); 
+
+                //EditorGUILayout.BeginHorizontal();
+                //{
+                    EditorGUILayout.PropertyField(Height, G_Height);
+                    //if (GUILayout.Button(G_Calculate_H, EditorStyles.miniButton, GUILayout.Width(18)))
+                    //{
+                    //    m.height = 1;
+                    //    m.SetPivots();
+                    //    m.CalculateHeight();
+                    //    Height.floatValue = m.height;
+
+                    //    serializedObject.ApplyModifiedProperties();
+                    //    EditorUtility.SetDirty(m);
+                    //}
+                //}
+                //EditorGUILayout.EndHorizontal();
+
 
                 EditorGUILayout.PropertyField(GroundLayer, G_GroundLayer);
                 EditorGUILayout.PropertyField(maxAngleSlope, G_maxAngleSlope);

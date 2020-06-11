@@ -14,18 +14,15 @@ namespace MalbersAnimations.Controller
     {
         void Awake()
         {
-            if (MainCamera == null)
-                MainCamera = MalbersTools.FindMainCamera()?.transform; //Find the Camera
-
+          
             if (Anim == null) Anim = GetComponentInParent<Animator>();            //Cache the Animator
             if (RB == null) RB = GetComponentInParent<Rigidbody>();             //Catche the Rigid Body  
             SpeedMultiplier = 1;
             GetHashIDs();
 
-            if (Anim)
-                OptionalAnimatorParameters();                                    //Enable Optional Animator Parameters on the Animator Controller;
+            if (Anim)  OptionalAnimatorParameters();                                    //Enable Optional Animator Parameters on the Animator Controller;
 
-            CurrentSpeedSet = new MSpeedSet() { Speeds = new List<MSpeed>(1) { new MSpeed("Default", 1, 4, 4) } };
+            CurrentSpeedSet = new MSpeedSet() { Speeds = new List<MSpeed>(1) { new MSpeed("Default", 1, 4, 4) } }; //Create a Default Speed at Awake
 
             foreach (var set in speedSets) set.CurrentIndex = set.StartVerticalIndex;
 
@@ -36,8 +33,6 @@ namespace MalbersAnimations.Controller
             }
 
             GetAnimalColliders();
-
-            //DefaultAnimatorUpdate = Anim.updateMode;//Cache the Update Mode on the Animator to Physics or Normal
 
             statesD = new Dictionary<int, State>();
           
@@ -73,7 +68,7 @@ namespace MalbersAnimations.Controller
             HitDirection = Vector3.zero; //Reset the Damage Direction;
         }
 
-        private void SetPivots()
+        public void SetPivots()
         {
             Pivot_Hip = pivots.Find(item => item.name.ToUpper() == "HIP");
             Pivot_Chest = pivots.Find(item => item.name.ToUpper() == "CHEST");
@@ -87,6 +82,10 @@ namespace MalbersAnimations.Controller
        
         void OnEnable()
         {
+
+            if (MainCamera == null)
+                MainCamera = MalbersTools.FindMainCamera()?.transform; //Find the Camera
+
             if (Animals == null) Animals = new List<MAnimal>();
             Animals.Add(this);          //Save the the Animal on the current List
 
@@ -95,6 +94,11 @@ namespace MalbersAnimations.Controller
             foreach (var state in states)  state.ResetState();
 
             if (isPlayer) SetMainPlayer();
+
+
+            SetBoolParameter += SetAnimParameter;
+            SetIntParameter += SetAnimParameter;
+            SetFloatParameter += SetAnimParameter;
         }
 
         void OnDisable()
@@ -103,6 +107,10 @@ namespace MalbersAnimations.Controller
 
             GetInputs(false);
             DisableMainPlayer();
+
+            SetBoolParameter -= SetAnimParameter;
+            SetIntParameter -= SetAnimParameter;
+            SetFloatParameter -= SetAnimParameter;
         }  
 
         protected virtual void SetStart()
@@ -153,11 +161,12 @@ namespace MalbersAnimations.Controller
             Randomizer = true;
             AlwaysForward = AlwaysForward;                       // Execute the code inside Always Forward .... Why??? Don't know ..something to do with the Input stuff
             Stance = currentStance;
-
         }
 
-        internal void CalculateHeight()
+        public void CalculateHeight()
         {
+            if (height != 1) return; // means the height has already been calculated
+
             if (Has_Pivot_Hip)
             {
                 height = Pivot_Hip.position.y;
@@ -166,7 +175,6 @@ namespace MalbersAnimations.Controller
             else if (Has_Pivot_Chest)
             {
                 height = Pivot_Chest.position.y;
-
                 Center = Pivot_Chest.position;
             }
 
@@ -269,15 +277,15 @@ namespace MalbersAnimations.Controller
         /// <summary>Link all Parameters to the animator</summary>
         protected virtual void UpdateAnimatorParameters()
         {
-            Anim.SetFloat(hash_Vertical, VerticalSmooth);
-            Anim.SetFloat(hash_Horizontal, HorizontalSmooth);
-            Anim.SetBool(hash_Movement, MovementDetected);
+            SetFloatParameter(hash_Vertical, VerticalSmooth);
+            SetFloatParameter(hash_Horizontal, HorizontalSmooth);
+            SetBoolParameter(hash_Movement, MovementDetected);
 
-            if (hasUpDown) Anim.SetFloat(hash_UpDown, UpDownSmooth);
-            if (hasDeltaAngle) Anim.SetFloat(hash_DeltaAngle, DeltaAngle);
-            if (hasSlope) Anim.SetFloat(hash_Slope, SlopeNormalized);
-            if (hasSpeedMultiplier) Anim.SetFloat(hash_SpeedMultiplier, SpeedMultiplier);
-            if (hasStateTime) Anim.SetFloat(hash_StateTime, StateTime);
+            if (hasUpDown) SetFloatParameter(hash_UpDown, UpDownSmooth);
+            if (hasDeltaAngle) SetFloatParameter(hash_DeltaAngle, DeltaAngle);
+            if (hasSlope) SetFloatParameter(hash_Slope, SlopeNormalized);
+            if (hasSpeedMultiplier) SetFloatParameter(hash_SpeedMultiplier, SpeedMultiplier);
+            if (hasStateTime) SetFloatParameter(hash_StateTime, StateTime);
         }
 
         #endregion
@@ -734,14 +742,11 @@ namespace MalbersAnimations.Controller
 
                 if (StateQueued != null && state.ID == StateQueued.ID) continue;    //if the State on the list is on Queue Continue
 
-                if (state.Active && !state.IsSleepFromState && !state.IsSleepFromMode && state.TryActivate())
+                if (state.Active && !state.IsSleepFromState && !state.IsSleepFromMode && state.TryActivate()) //Means a new state can be activated
                 {
-                    // if (state.StateAnimationTags(AnimStateTag)) return;          //The Last State has not already exit the Animation State so do not Activate it
-
-                    if (StateQueued != null && !StateQueued.QueueFrom.Contains(state.ID))
+                    if (StateQueued != null && !StateQueued.QueueFrom.Contains(state.ID)) // Lets Try activate the OldState
                     {
                         StateQueued.ActivateQueued();
-                        StateQueued = null;
                         break;
                     }
                     state.Activate();
@@ -829,7 +834,7 @@ namespace MalbersAnimations.Controller
                 JustActivateState = false;
             } 
 
-            InputMode?.TryActivate(); //FOR MODES  Still need to work this better yeah I know
+           if (InputMode != null && InputMode.PlayingMode)  InputMode.TryActivate(); //FOR MODES  Still need to work this better yeah I know
 
             if (Grounded)
             {

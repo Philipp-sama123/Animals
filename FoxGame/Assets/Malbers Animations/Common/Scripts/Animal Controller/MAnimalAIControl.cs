@@ -752,7 +752,7 @@ namespace MalbersAnimations.Controller
 
             var Pos = (Application.isPlaying && target) ? target.position : Agent.transform.position;
 
-            if (Application.isPlaying && target != null)
+            if (Application.isPlaying && target != null && IsAITarget != null)
             {
                 Pos = IsAITarget.GetPosition();
             }

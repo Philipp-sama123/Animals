@@ -21,19 +21,19 @@ namespace MalbersAnimations
         */
     }
 
-    public interface IAnimatorParameters
-    {
-        void SetAnimParameter(int hash, int value);
+    //public interface IAnimatorParameters
+    //{
+    //    void SetAnimParameter(int hash, int value);
 
-        /// <summary>Set a float on the Animator</summary>
-        void SetAnimParameter(int hash, float value);
+    //    /// <summary>Set a float on the Animator</summary>
+    //    void SetAnimParameter(int hash, float value);
 
-        /// <summary>Set a Bool on the Animator</summary>
-        void SetAnimParameter(int hash, bool value);
+    //    /// <summary>Set a Bool on the Animator</summary>
+    //    void SetAnimParameter(int hash, bool value);
 
-        /// <summary>Set a Trigger to the Animator</summary>
-        void SetAnimParameter(int hash);
-    }
+    //    /// <summary>Set a Trigger to the Animator</summary>
+    //    void SetAnimParameter(int hash);
+    //}
 
     public class MessagesBehavior : StateMachineBehaviour
     {

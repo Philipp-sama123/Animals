@@ -1,25 +1,15 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
-using System;
+using System.IO;
 
 namespace MalbersAnimations
 {
     public class MalbersEditor
-    {
-        public static GUIStyle StyleGray
-        {
-            get
-            {
-                return Style(new Color(0.5f, 0.5f, 0.5f, 0.3f));
-            }
-        }
-
+    { 
         public static GUIStyle BoldFoldout
         {
             get
@@ -30,55 +20,15 @@ namespace MalbersAnimations
             }
         }
 
-        public static GUIStyle StyleBlue
-        {
-            get
-            {
-                return Style(new Color(0, 0.5f, 1f, 0.3f));
-            }
-        }
-
-        public static GUIStyle StyleRed
-        {
-            get
-            {
-                return Style(new Color(1, 0.3f, 0f, 0.3f));
-            }
-        }
-
-        public static GUIStyle StyleGreen
-        {
-            get
-            {
-                return Style(new Color(0f, 1f, 0.5f, 0.3f));
-            }
-        }
-        public static GUIStyle StyleOrange
-        {
-            get
-            {
-                return Style(new Color(1f, 0.5f, 0.0f, 0.3f));
-            }
-        }
-
-
-        public static GUIStyle Border
-        {
-            get
-            {
-                return Style(new Color(0, 0.5f, 1f, 0.0f));
-            }
-        }
-
+        public static GUIStyle StyleBlue => Style(new Color(0, 0.5f, 1f, 0.3f));
+        public static GUIStyle StyleRed => Style(new Color(1, 0.3f, 0f, 0.3f));
+        public static GUIStyle StyleGreen => Style(new Color(0f, 1f, 0.5f, 0.3f));
+        public static GUIStyle StyleGray => Style(new Color(0.5f, 0.5f, 0.5f, 0.3f));
+        public static GUIStyle StyleOrange =>  Style(new Color(1f, 0.5f, 0.0f, 0.3f));
+        public static GUIStyle Border => Style(new Color(0, 0.5f, 1f, 0.0f));
+        public static GUIStyle FlatBox => Style(new Color(0.35f, 0.35f, 0.35f, 0.1f));
        
 
-        public static GUIStyle FlatBox
-        {
-            get
-            {
-                return Style(new Color(0.35f, 0.35f, 0.35f, 0.1f));
-            }
-        }
 
         public static GUIStyle Style(Color color)
         {
@@ -129,6 +79,33 @@ namespace MalbersAnimations
         public static System.Type GetTypeByName(string className)
         {
             return System.AppDomain.CurrentDomain.GetAssemblies() .SelectMany(x => x.GetTypes())  .FirstOrDefault(t => t.Name == className);
+        }
+
+        /// <summary> Check if an Object is an Asset Folder </summary>
+        public static bool IsAssetAFolder(Object obj)
+        {
+            string path = "";
+
+            if (obj == null)
+            {
+                return false;
+            }
+
+            path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+
+            if (path.Length > 0)
+            {
+                if (Directory.Exists(path))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         public static void AddParametersOnAnimator(UnityEditor.Animations.AnimatorController AnimController, UnityEditor.Animations.AnimatorController Mounted)
@@ -278,7 +255,6 @@ namespace MalbersAnimations
                 EditorGUILayout.PropertyField(prop, true);
             EditorGUI.indentLevel--;
         }
-
 
         internal static bool Foldout(SerializedProperty prop, string name, bool bold = false)
         {

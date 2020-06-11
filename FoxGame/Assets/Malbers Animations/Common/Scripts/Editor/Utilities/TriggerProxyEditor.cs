@@ -29,7 +29,7 @@ namespace MalbersAnimations.Utilities
                 {
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("active"));
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("ignoreTriggers"));
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("Ignore"), new GUIContent("Ignore Layers", "GameObjects to Ignore with this layers"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("hitLayer"), new GUIContent("Hit Layers", "GameObjects to Ignore with this layers"));
                 }
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);

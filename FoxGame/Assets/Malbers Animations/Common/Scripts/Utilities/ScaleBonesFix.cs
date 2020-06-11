@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using MalbersAnimations.Controller;
 
 namespace MalbersAnimations
 {
@@ -10,33 +10,39 @@ namespace MalbersAnimations
     /// </summary>
     public class ScaleBonesFix : MonoBehaviour, IAnimatorListener
     {
-        public Transform fixGameObject;
-        public Vector3 Offset;
-        public float duration;
+        private MAnimal animal;
+        public float Offset = -0.2f;
+        public float duration = 0.2f;
+
+        private void Awake()
+        {
+            animal = GetComponent<MAnimal>() ?? GetComponentInParent<MAnimal>();
+        }
 
         public void FixHeight(bool active)
         {
             StartCoroutine(SmoothFix(active));
         }
 
+        public IEnumerator SmoothFix(bool active)
+        {
+            float t = 0f;
+            float startpos = animal.height;
+            float endpos = startpos + (active ? Offset : -Offset);
+
+            while (t < duration)
+            {
+                animal.height = Mathf.Lerp(startpos, endpos, t / duration);
+                t += Time.deltaTime;
+                yield return null;
+            }
+            animal.height = endpos;
+            yield return null;
+        }
 
         public virtual void OnAnimatorBehaviourMessage(string message, object value)
         {
             this.InvokeWithParams(message, value);
-        }
-
-
-        public IEnumerator SmoothFix(bool active)
-        {
-            float t = 0f;
-            Vector3 startpos = fixGameObject.localPosition;
-            Vector3 endpos = startpos + (active ? Offset : -Offset);
-            while (t < duration)
-            {
-                fixGameObject.localPosition = Vector3.Lerp(startpos, endpos, t / duration);
-                t += Time.deltaTime;
-                yield return null;
-            }
         }
     }
 }

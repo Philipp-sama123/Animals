@@ -28,11 +28,7 @@ namespace MalbersAnimations.Controller
         public Animator Anim { get; private set; }
         public MAnimal animal { get; private set; }
 
-        public bool Active
-        {
-            set { active.Value = value; }
-            get { return active.Value; }
-        }
+        public bool Active { set => active.Value = value; get => active.Value; }
 
         public Transform Target;
         protected Vector3 Direction;

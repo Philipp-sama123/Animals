@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace MalbersAnimations
 {
@@ -101,6 +104,8 @@ namespace MalbersAnimations
         void UsesColliders(bool sel)
         {
             var DebugColorWire = new Color(DebugColor.r, DebugColor.g, DebugColor.b, 1);
+            if (sel) DebugColorWire = Color.yellow;
+
             if (_Collider is BoxCollider)
             {
                 BoxCollider _C = _Collider as BoxCollider;
@@ -142,4 +147,55 @@ namespace MalbersAnimations
         }
 #endif
     }
-}
+
+
+#if UNITY_EDITOR
+    [CustomEditor(typeof(GizmoVisualizer)), CanEditMultipleObjects]
+    public class MAnimalEditor : Editor
+    {
+
+        SerializedProperty UseColliders, gizmoType, debugSize, DebugColor, DrawAxis, AxisSize;
+        
+
+        private void OnEnable()
+        {
+            UseColliders = serializedObject.FindProperty("UseColliders");
+            gizmoType = serializedObject.FindProperty("gizmoType");
+            debugSize = serializedObject.FindProperty("debugSize");
+            DebugColor = serializedObject.FindProperty("DebugColor");
+            DrawAxis = serializedObject.FindProperty("DrawAxis");
+            AxisSize = serializedObject.FindProperty("AxisSize");
+        }
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(UseColliders);
+            EditorGUILayout.PropertyField(DebugColor, GUIContent.none, GUILayout.MaxWidth(100));
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(DrawAxis);
+            if (DrawAxis.boolValue)
+            {
+                EditorGUIUtility.labelWidth = 30;
+                EditorGUILayout.PropertyField(AxisSize, new GUIContent("Size"), GUILayout.MaxWidth(100), GUILayout.MinWidth(70));
+                EditorGUIUtility.labelWidth = 0;
+            }
+            EditorGUILayout.EndHorizontal();
+            if (!UseColliders.boolValue)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(gizmoType);
+                EditorGUIUtility.labelWidth = 30;
+                EditorGUILayout.PropertyField(debugSize, new GUIContent("Size"), GUILayout.MaxWidth(100), GUILayout.MinWidth(70));
+                EditorGUIUtility.labelWidth = 0;
+                EditorGUILayout.EndHorizontal();
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+#endif
+    }

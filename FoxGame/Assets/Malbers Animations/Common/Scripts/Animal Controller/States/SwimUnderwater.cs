@@ -21,7 +21,7 @@ namespace MalbersAnimations.Controller
             SwimState = null;
 
             SwimState = (Swim)animal.State_Get(4); //Get the Store the Swim State
-
+ 
             if (SwimState == null)
             {
                 Debug.LogError("UnderWater State needs Swim State in order to work, please add the Swim State to the Animal");
@@ -37,6 +37,8 @@ namespace MalbersAnimations.Controller
 
         public override bool TryActivate()
         {
+           if (SwimState == null) return false;
+
             if (!SwimState.IsActiveState)  //If we are not already swimming we need to check is we are on water
                 SwimState.CheckWater();
 
@@ -102,7 +104,7 @@ namespace MalbersAnimations.Controller
 
         public override void DebugState()
         {
-            if (Application.isPlaying)
+            if (Application.isPlaying && SwimState != null && animal != null)   
             {
                 Gizmos.color = Color.blue;
                 Gizmos.DrawSphere(SwimState.WaterPivotPoint, SwimState.Radius * animal.ScaleFactor);

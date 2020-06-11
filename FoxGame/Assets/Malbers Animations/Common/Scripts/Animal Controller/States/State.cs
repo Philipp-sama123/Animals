@@ -149,7 +149,12 @@ namespace MalbersAnimations.Controller
 
             EnterExitEvent = animal.OnEnterExitStates.Find(st => st.ID == ID);
 
-            ExitState(); //Reset all the values to their default IMPORTANT
+            InputValue = false;
+            IgnoreLowerStates = false;
+            IsPersistent = false;
+            IsPending = false;
+            OnQueue = false;
+            IsActiveState = false;
         }
 
 
@@ -157,32 +162,32 @@ namespace MalbersAnimations.Controller
         /// <summary>Activate the State </summary>
         public virtual void Activate()
         {
-            SetSpeeds();
-            LastStatePendingExit = false;
-
-            animal.LastState = animal.ActiveState;                          //Set a new Last State
             var LastState = animal.LastState;
-
             if (LastState != null && QueueFrom.Contains(LastState.ID) && !OnQueue)
             {
-                if (animal.debugStates) Debug.Log(ID.name + " State has being Queue");
-                OnQueue = true;
+                if (animal.debugStates) Debug.Log(ID.name + " State has being queued");
                 animal.QueueState(this);
+                OnQueue = true;
+                animal.ActiveState.AllowExit();
+                animal.LastState = this;
             }
 
             if (OnQueue) return;
-
-            if (animal.debugStates) Debug.Log("Activate: <B>" + ID.name+"</B> State");
+       
+            animal.LastState = animal.ActiveState;                          //Set a new Last State
 
             LastStateExit();
+
+            SetSpeeds();
+            LastStatePendingExit = false;
+
+            if (animal.debugStates) Debug.Log("Activate: <B>" + ID.name+"</B> State");
 
             animal.JustActivateState = true;
 
             animal.ActiveState = this;          //Update to the Current State
             IsActiveState = true;                 //Set this state as the Active State
             IsPending = true;                   //We need to set is as pending since we have not enter this states animations yet IMPORTANT
-
-        //    Debug.Log("<b>"+name+"</b>");
 
             EnterExitEvent?.OnEnter?.Invoke();
         }
@@ -191,7 +196,6 @@ namespace MalbersAnimations.Controller
         private void LastStateExit()
         {
             animal.LastState.EnterExitEvent?.OnExit?.Invoke();
-            //HasEnterState = false;
             animal.LastState.ExitState();
         }
 
@@ -209,14 +213,22 @@ namespace MalbersAnimations.Controller
         public virtual void ActivateQueued()
         {
             OnQueue = false;
-
+            animal.QueueState(null);
             animal.LastState = animal.ActiveState;                          //Set a new Last State
             LastStateExit();
 
-            animal.ActiveState = this;                                      //Update to the Current State
-            IsActiveState = true;
+            SetSpeeds();
+            LastStatePendingExit = false;
 
-            if (EnterExitEvent != null) EnterExitEvent.OnEnter.Invoke();
+            if (animal.debugStates) Debug.Log("Activate: <B>" + ID.name + "</B> State. WAS QUEUED");
+
+            animal.JustActivateState = true;
+
+            animal.ActiveState = this;          //Update to the Current State
+            IsActiveState = true;                 //Set this state as the Active State
+            IsPending = true;                   //We need to set is as pending since we have not enter this states animations yet IMPORTANT
+
+            EnterExitEvent?.OnEnter?.Invoke();
         }
 
         /// <summary>When a Tag Changes apply this modifications</summary>
@@ -298,7 +310,6 @@ namespace MalbersAnimations.Controller
             IgnoreLowerStates = false;
             IsPersistent = false;
             IsPending = false;
-            OnQueue = false;
             IsActiveState = false; //This will not be any longer the Active State
         }
 

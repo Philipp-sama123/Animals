@@ -29,8 +29,6 @@ namespace MalbersAnimations.Events
                 if (item.Event) item.Event.UnregisterListener(item);
             }
         }
-
-        
     }
      
     [System.Serializable]

@@ -186,7 +186,7 @@ namespace MalbersAnimations
     {
         #region Variables 
         /// <summary> Is the Stat Active? </summary>
-        [SerializeField] private bool active = true;
+        public bool active = true;
         /// <summary> ID of the Stat</summary>
         public StatID ID;
         /// <summary> Value and Default/RestoreValue of the Stat</summary>
@@ -243,7 +243,7 @@ namespace MalbersAnimations
         /// <summary>Is the Stat Enabled? when Disable no modification can be done. All current modification can't be stopped</summary>
         public bool Active
         {
-            get { return active; }
+            get => active; 
             set
             {
                 active = value;

@@ -80,20 +80,10 @@ namespace MalbersAnimations.Controller
                 SelfStats = Owner.GetComponentInParent<Stats>();
             }
         }
-
-        void Awake()
-        {
-            Owner = transform.root; //Set which is the owner of this AttackTrigger
-
-            if (!Trigger)
-            {
-                Trigger = GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
-                Trigger.isTrigger = true;
-            }
-        }
-
+ 
         void OnEnable()
-        {
+        {  
+            Owner = transform.root; //Set which is the owner of this AttackTrigger
             SelfStatEnter.ModifyStat(SelfStats);
             Trigger.enabled = true;
             Trigger.isTrigger = true;
@@ -215,10 +205,13 @@ namespace MalbersAnimations.Controller
             };
 
             Trigger = GetComponent<Collider>();
+            if (!Trigger) Trigger.GetComponentInChildren<Collider>();
+            if (!Trigger) Trigger.GetComponentInParent<Collider>();
+
+
             if (!Trigger) Trigger = gameObject.AddComponent<BoxCollider>();
             Trigger.isTrigger = true;
-            Owner = transform.root; //Set which is the owner of this AttackTrigger
-            this.enabled = false;
+            enabled = false;
 
 
 

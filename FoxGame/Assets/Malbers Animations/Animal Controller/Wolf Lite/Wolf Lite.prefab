@@ -1765,6 +1765,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
     Variable: {fileID: 0}
+  height: 1
   currentStance: 0
   defaultStance: 0
   AnimatorSpeed:
@@ -3523,7 +3524,18 @@ MonoBehaviour:
         m_Calls: []
     ResponseBool:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 114222225517902476}
+          m_MethodName: set_Sleep
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     ResponseBoolFalse:
       m_PersistentCalls:
         m_Calls:
@@ -3628,6 +3640,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnFocusedItem:
+    m_PersistentCalls:
+      m_Calls: []
   OnPicking:
     m_PersistentCalls:
       m_Calls: []

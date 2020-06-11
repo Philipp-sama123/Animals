@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using MalbersAnimations.Events;
+using MalbersAnimations.Scriptables;
 
 namespace MalbersAnimations.Utilities
 {
@@ -12,24 +10,25 @@ namespace MalbersAnimations.Utilities
     /// </summary>
     public class TriggerProxy : MonoBehaviour
     {
-        [Tooltip("Ignore this Objects with this layers")]
-        public LayerMask Ignore;
-        [SerializeField] private bool active = true;
-        [SerializeField] private bool ignoreTriggers = true;
+        [Tooltip("Hit Layer for the Trigger Proxy")]
+        [SerializeField] private LayerReference hitLayer = new LayerReference(-1);
+        [SerializeField] private BoolReference active = new BoolReference(true);
+        [SerializeField] private BoolReference ignoreTriggers = new BoolReference(true);
 
         public ColliderEvent OnTrigger_Enter = new ColliderEvent();
         public ColliderEvent OnTrigger_Stay = new ColliderEvent();
         public ColliderEvent OnTrigger_Exit = new ColliderEvent();
         public CollisionEvent OnCollision_Enter = new CollisionEvent();
 
-        public bool Active { get => active; set => active = value; }
-        public bool IgnoreTriggers { get => ignoreTriggers; set => ignoreTriggers = value; }
+        public bool Active { get => active.Value; set => active.Value = value; }
+        public LayerMask HitLayer { get => hitLayer.Value; set => hitLayer.Value = value; }
+        public bool IgnoreTriggers { get => ignoreTriggers.Value; set => ignoreTriggers.Value = value; }
 
         public bool TrueConditions(Collider other)
         {
-            if (!active) return false;
+            if (!Active) return false;
             if (ignoreTriggers && other.isTrigger) return false;
-            if (MalbersTools.Layer_in_LayerMask(other.gameObject.layer, Ignore)) return false;
+            if (!MalbersTools.Layer_in_LayerMask(other.gameObject.layer, HitLayer)) return false;
 
             return true;
         }
@@ -55,13 +54,9 @@ namespace MalbersAnimations.Utilities
             Active = true;
 
             if (collider)
-            {
                 collider.isTrigger = true;
-            }
             else
-            {
                 Debug.LogWarning("This Script requires a Collider, please add any type of collider");
-            }
         }
     }
 }

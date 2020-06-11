@@ -98,7 +98,6 @@ namespace MalbersAnimations
         {
             ModeID modeID = MalbersTools.GetInstance<ModeID>("Attack1");
             animal = GetComponent<MAnimal>();
-            animal?.CalculateHeight();
 
             if (modeID != null)
             {

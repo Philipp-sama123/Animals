@@ -9,7 +9,7 @@ namespace MalbersAnimations.Controller
 {
     public class MPickUp : MonoBehaviour, IAnimatorListener
     {
-        [RequiredField,Tooltip("Trigger used to find Items that can be picked Up")]
+        [RequiredField, Tooltip("Trigger used to find Items that can be picked Up")]
         public Collider PickUpArea;
         public LayerReference PickUpLayer = new LayerReference(1073741824);
         [Tooltip("Allows Picking Items without any Input")]
@@ -24,8 +24,9 @@ namespace MalbersAnimations.Controller
         public Pickable FocusedItem;
         public Pickable item;
 
-      // [Header("Events")]
+        // [Header("Events")]
         public BoolEvent CanPickUp = new BoolEvent();
+        public BoolEvent OnFocusedItem = new BoolEvent();
         public IntEvent OnPicking = new IntEvent();
         public IntEvent OnDropping = new IntEvent();
 
@@ -36,6 +37,8 @@ namespace MalbersAnimations.Controller
         private MAnimal animal;
         private TriggerProxy AreaTrigger;
 
+        /// <summary>Does the Animal is holding an Item</summary>
+        
         public bool Has_Item => item != null;
 
         private void Awake()
@@ -53,8 +56,8 @@ namespace MalbersAnimations.Controller
             }
         }
 
- 
-        
+
+
 
         private void OnEnable()
         {
@@ -62,7 +65,7 @@ namespace MalbersAnimations.Controller
 
             if (AreaTrigger == null) AreaTrigger = PickUpArea.gameObject.AddComponent<TriggerProxy>();
 
-            AreaTrigger.Ignore = ~PickUpLayer.Value;
+            AreaTrigger.HitLayer = PickUpLayer.Value;
             AreaTrigger.IgnoreTriggers = false;
 
             AreaTrigger.OnTrigger_Enter.AddListener(OnAreaTriggerEnter);
@@ -80,14 +83,14 @@ namespace MalbersAnimations.Controller
 
         void OnAreaTriggerEnter(Collider col)
         {
-            var newItem = col.GetComponent<Pickable>() ?? col.transform.root.GetComponent<Pickable>();
+            var newItem = col.GetComponent<Pickable>() ?? col.GetComponentInParent<Pickable>();
 
             if (newItem)
             {
                 FocusedItem = newItem;
                 FocusedItem.OnFocused.Invoke(true);
+                OnFocusedItem.Invoke(FocusedItem);
                 CanPickUp.Invoke(true);
-
                 if (AutoPick.Value && !animal.IsPlayingMode)
                     TryPickUp();
             }
@@ -97,7 +100,7 @@ namespace MalbersAnimations.Controller
         {
             if (FocusedItem != null)
             {
-                var newItem = col.transform.root.GetComponent<Pickable>();
+                var newItem = col.GetComponent<Pickable>() ?? col.GetComponentInParent<Pickable>();
 
                 if (newItem && newItem == FocusedItem)
                 {
@@ -136,7 +139,7 @@ namespace MalbersAnimations.Controller
                 StartCoroutine(MalbersTools.AlignTransformRadius(transform, item.transform, item.AlignTime, item.AlignDistance));
             }
 
-           // Debug.Log("UsePickUpAnimations");
+            // Debug.Log("UsePickUpAnimations");
             if (!animal.Mode_TryActivate(item.PickUpMode.ID, item.PickUpAbility)) //Means if the animal does not have a pick up Animation that calls the PickUP method then It will do it manually
                 PickUpItem();
         }
@@ -166,22 +169,27 @@ namespace MalbersAnimations.Controller
         }
 
         /// <summary>Pick Up Logic. It can be called by the ANimator</summary>
-      
+
         public void PickUpItem()
         {
-            item.Picked();                              //Tell the Item that it was picked
-            item.transform.parent = Holder;             //Parent it to the Holder
-            item.transform.localPosition = PosOffset;   //Offset the Position
-            item.transform.localEulerAngles = RotOffset;//Offset the Rotation
+            item = FocusedItem;
 
-            PickUpArea?.gameObject.SetActive(false);    //Disable the Pick Up Area
-           
-            FocusedItem?.OnFocused.Invoke(false);
-            FocusedItem = null;                         //Remove the Focused Item
+            if (item)
+            {
+                item.Picked();                              //Tell the Item that it was picked
+                item.transform.parent = Holder;             //Parent it to the Holder
+                item.transform.localPosition = PosOffset;   //Offset the Position
+                item.transform.localEulerAngles = RotOffset;//Offset the Rotation
 
-            animal?.UpdateAttackTriggers();
+                PickUpArea?.gameObject.SetActive(false);    //Disable the Pick Up Area
 
-            OnPicking.Invoke(item.ID);                         //Invoke the Method
+                FocusedItem?.OnFocused.Invoke(false);
+                FocusedItem = null;                         //Remove the Focused Item
+
+                animal?.UpdateAttackTriggers();
+
+                OnPicking.Invoke(item.ID);                         //Invoke the Method
+            }
         }
  
 

@@ -10,12 +10,12 @@ namespace MalbersAnimations.Controller
 {
     /// <summary>
     /// This will controll all Animals Motion it is more Modular
-    /// Version 1.1.6f
+    /// Version 1.1.9f
     /// </summary>
    // [RequireComponent(typeof(Animator))]
    // [RequireComponent(typeof(Rigidbody))]
    [HelpURL("https://malbersanimations.gitbook.io/animal-controller/main-components/manimal-controller")]
-    public partial class MAnimal : MonoBehaviour, IAnimatorListener, ICharacterMove, IGravity, IMDamage, IMHitLayer , IAnimatorParameters , IRandomizer
+    public partial class MAnimal : MonoBehaviour, IAnimatorListener, ICharacterMove, IGravity, IMDamage, IMHitLayer , IRandomizer//, IAnimatorParameters 
     {
         //Animal Variables: All variables
         //Animal Movement:  All Locomotion Logic
@@ -37,6 +37,7 @@ namespace MalbersAnimations.Controller
 #if UNITY_EDITOR
         void Reset()
         {
+
             MalbersTools.SetLayer(base.transform, 20);     //Set all the Childrens to Animal Layer   .
             gameObject.tag = "Animal";                //Set the Animal to Tag Animal
             AnimatorSpeed = 1;
@@ -129,6 +130,26 @@ namespace MalbersAnimations.Controller
                 listener.Events.Add(item);
 
                 Debug.Log("<B>Set Action Status</B> Added to the Event Listeners");
+            }
+
+
+            /************************/
+
+            MEvent timeline = MalbersTools.GetInstance<MEvent>("Timeline");
+            if (listener.Events.Find(item => item.Event == timeline) == null)
+            {
+                var item = new MEventItemListener()
+                {
+                    Event = timeline,
+                    useVoid = false,
+                    useBool = true,
+                };
+
+                UnityEditor.Events.UnityEventTools.AddPersistentListener(item.ResponseBool,LockAnimal);
+
+                listener.Events.Add(item);
+
+                Debug.Log("<B>Timeline Listener</B> Added to the Event Listeners");
             }
 
 

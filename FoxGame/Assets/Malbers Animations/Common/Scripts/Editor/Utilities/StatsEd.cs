@@ -186,16 +186,12 @@ namespace MalbersAnimations
 
 
         void HeaderCallbackDelegate(Rect rect)
-        {
-          
-
+        { 
             Rect R_1 = new Rect(rect.x + 25, rect.y, (rect.width - 10) / 2, EditorGUIUtility.singleLineHeight);
-            Rect R_2 = new Rect(rect.width / 2 + 25, rect.y, rect.x + (rect.width / 4) - 5, EditorGUIUtility.singleLineHeight);
-            // Rect R_3 = new Rect((rect.width / 2) + (rect.width / 4)+30, rect.y+1, (rect.width / 4), EditorGUIUtility.singleLineHeight - 2);
+            Rect R_2 = new Rect(rect.width / 2 + 25, rect.y, rect.x + (rect.width / 4) - 5, EditorGUIUtility.singleLineHeight); 
 
             EditorGUI.LabelField(R_1, "ID/Name", EditorStyles.miniLabel);
-            EditorGUI.LabelField(R_2, "Value", EditorStyles.centeredGreyMiniLabel);
-            //EditorGUI.LabelField(R_3, "Default", EditorStyles.centeredGreyMiniLabel);
+            EditorGUI.LabelField(R_2, "Value", EditorStyles.centeredGreyMiniLabel);   
         }
 
         void DrawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
@@ -213,9 +209,10 @@ namespace MalbersAnimations
 
             Rect R_0 = new Rect(rect.x, rect.y, 15, EditorGUIUtility.singleLineHeight);
             Rect R_1 = new Rect(rect.x + 40, rect.y, (rect.width) / 2  -22, EditorGUIUtility.singleLineHeight);
-            Rect R_2 = new Rect(rect.x + 40 + ((rect.width) / 2), rect.y, rect.width - ((rect.width) / 2) - 40, EditorGUIUtility.singleLineHeight);
+            Rect R_2 = new Rect(rect.x + 40 + ((rect.width) / 2), rect.y, rect.width - ((rect.width) / 2) - 40, EditorGUIUtility.singleLineHeight); 
 
             EditorGUI.PropertyField(R_0, active, new GUIContent("", "Is the Stat Enabled? when Disable no modification can be done"));
+
             EditorGUI.PropertyField(R_1, ID, GUIContent.none);
 
             EditorGUI.BeginChangeCheck();
@@ -231,6 +228,8 @@ namespace MalbersAnimations
                     ConstantMAX.floatValue = ConstantValue.floatValue;
                 }
             }
+
+            serializedObject.ApplyModifiedProperties();
         }
 
 

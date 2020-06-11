@@ -1,4 +1,5 @@
-﻿using MalbersAnimations.Events;
+﻿using JetBrains.Annotations;
+using MalbersAnimations.Events;
 using MalbersAnimations.Scriptables;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Is this Mode Playing?</summary>
         public bool PlayingMode { get; set; }
+ 
         /// <summary>Priority of the Mode.  Higher value more priority</summary>
         public int Priority { get; internal set; }
 
@@ -72,15 +74,13 @@ namespace MalbersAnimations.Controller
         /// <summary>If enabled, it will play this Mode even if a Lower Mode is Playing </summary>
         public bool IgnoreLowerModes { get => ignoreLowerModes; set => ignoreLowerModes = value; }
 
-        protected bool AffectStates_Empty
-        {
-            get { return (GlobalProperties.affectStates == null || GlobalProperties.affectStates.Count == 0); }
-        }
+        protected bool AffectStates_Empty => (GlobalProperties.affectStates == null || GlobalProperties.affectStates.Count == 0);
+       
 
         /// <summary> Active Ability Index of the mode</summary>
         public int AbilityIndex
         {
-            get { return abilityIndex; }
+            get => abilityIndex;  
             set
             {
                 abilityIndex.Value = value;
@@ -117,11 +117,8 @@ namespace MalbersAnimations.Controller
         public virtual void AwakeMode(MAnimal animal)
         {
             Animal = animal;                                   //Cache the Animal
-          //  ModeTagHash = Animator.StringToHash(AnimationTag);      //Convert the Tag on a TagHash
             OnAbilityIndex.Invoke(AbilityIndex);
-          //  ModeActivatedTime = -CoolDown;                          //First Time IMPORTANT
             InCoolDown = false;
-           // Debug.Log(Priority);
         }
 
         /// <summary>Exit the current mode an ability</summary> 
@@ -136,6 +133,7 @@ namespace MalbersAnimations.Controller
             }
 
             PlayingMode = false;
+           // Prepared = false;
 
             if (modifier != null) modifier.OnModeExit(this);
 
@@ -211,17 +209,18 @@ namespace MalbersAnimations.Controller
         public virtual bool TryActivate()
         {
             if (!active) return false;                //If the mode is Disabled Ingnore
+            modifier?.OnModeEnter(this);              //Check first if there's a modifier on Enter
+            
             if (AbilityIndex == 0) return false;      //Means that no Ability is Active
 
             if (Abilities == null || Abilities.Count == 0)
             {
-             //   if (Animal.debugModes) Debug.LogWarning("There's no Abilities on <b>" + Name + " Mode</b>, Please set a list of Abilities");
+                if (Animal.debugModes) Debug.LogWarning("There's no Abilities Please set a list of Abilities");
                 return false;
             }
 
-            //FINALLY IF EVERYTHING IS WORKING THEN ACTIVATE THE MODE
-            if (modifier != null) modifier.OnModeEnter(this); //Check first if there's a modifier on Enter
 
+            //FINALLY IF EVERYTHING IS WORKING THEN ACTIVATE THE MODE
             int NewIndex = (AbilityIndex == -1) ? Abilities[Random.Range(0, Abilities.Count)].Index.Value : AbilityIndex; //Set the Index of the Ability for the Mode
 
             var newAbility = Abilities.Find(item => item.Index == NewIndex);
@@ -248,7 +247,6 @@ namespace MalbersAnimations.Controller
             }
 
             var ActiveMode = Animal.ActiveMode;
-
 
             if (Animal.IsPlayingMode)              // Means the there's a Mode Playing
             {
@@ -283,9 +281,7 @@ namespace MalbersAnimations.Controller
         private void Activate(Ability newAbility)
         {
             ActiveAbility = newAbility;
-             
             if (Animal.debugModes) Debug.Log("Mode: <B>" + Name + "</B> with Ability: <B>" + ActiveAbility.Name + "</B> Activated");
-           
             Animal.SetModeParameters(this);
         }
 
@@ -339,7 +335,7 @@ namespace MalbersAnimations.Controller
             {
                 Animal.ActiveMode = this;
                 PlayingMode = true;
-                
+               
                 Animal.CheckStateToModeSleep(true);                      //Put to sleep the states needed
                 Animal.LastModeStatus = MStatus.Playing;
                 OnEnterInvoke();                                        //Invoke the ON ENTER Event

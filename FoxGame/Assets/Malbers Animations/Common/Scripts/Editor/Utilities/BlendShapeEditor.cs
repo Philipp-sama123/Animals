@@ -56,7 +56,7 @@ namespace MalbersAnimations.Utilities
 
                     int Length = 0;
                     if (mesh.objectReferenceValue != null)
-                        Length = M.mesh.sharedMesh.blendShapeCount;
+                        Length = blendShapes.arraySize;
 
                     EditorGUILayout.BeginVertical(EditorStyles.helpBox);
                     {

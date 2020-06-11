@@ -44,8 +44,8 @@ namespace MalbersAnimations
         private void OnDrawGizmosSelected()
         {
             UnityEditor.Handles.color = Gizmos.color = Color.red;
-            UnityEditor.Handles.DrawWireDisc(Center, transform.up, stoppingDistance);
-            UnityEditor.Handles.DrawSolidDisc(Center, transform.up, stoppingDistance*0.066f);
+            UnityEditor.Handles.DrawWireDisc(Center, transform.up, stoppingDistance * transform.localScale.y);
+            UnityEditor.Handles.DrawSolidDisc(Center, transform.up, stoppingDistance* 0.066f * transform.localScale.y);
         }
 #endif
     }

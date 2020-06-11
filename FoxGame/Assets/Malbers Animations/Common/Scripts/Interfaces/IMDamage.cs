@@ -36,7 +36,7 @@ namespace MalbersAnimations
             if (enemy != null)                                                               //if the other does'nt have the Damagable Interface dont send the Damagable stuff
             {
                 enemy.HitDirection = direction;
-                enemy.Damage(0,-1);
+                enemy.Damage(ModeEnum.Damage,-1);
                 enemy.Damager = Damager;
             }
         }

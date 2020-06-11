@@ -3,9 +3,7 @@ using MalbersAnimations.Scriptables;
 using System.Collections;
 using UnityEngine.Events;
 
-/// <summary>
-/// This is the same Camera FreeLookCam of the Stardard Assets Modify to Fit My Needs
-/// </summary>
+/// <summary> This is the same Camera FreeLookCam of the Stardard Assets Modify to Fit My Needs  </summary>
 namespace MalbersAnimations
 {
     public class MFreeLookCamera : MonoBehaviour
@@ -132,10 +130,7 @@ namespace MalbersAnimations
                 DefaultState.CamFOV = Cam.fieldOfView;
                 DefaultState.PivotPos = Pivot.localPosition;
                 DefaultState.CamPos = CamT.localPosition;
-
-
                 DefaultState.name = "Default State";
-
                 OnStateChange.Invoke();
             }
         }

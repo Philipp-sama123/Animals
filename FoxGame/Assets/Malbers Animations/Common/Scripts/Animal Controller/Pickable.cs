@@ -57,10 +57,8 @@ namespace MalbersAnimations.Controller
             OnFocused.Invoke(false);
         }
 
-        private void Awake()
-        { rb = GetComponent<Rigidbody>(); }
-
-
+        private void Awake()   { rb = GetComponent<Rigidbody>(); }
+     
         public virtual void Picked()
         {
             if (rb)

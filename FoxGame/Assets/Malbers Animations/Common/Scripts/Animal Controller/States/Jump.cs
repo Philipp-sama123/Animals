@@ -258,7 +258,7 @@ namespace MalbersAnimations.Controller
 
         public override void JustWakeUp()
         {
-            if (animal.ActiveStateID == 5) //Means is Underwater State..
+            if (animal.ActiveStateID == StateEnum.UndweWater) //Means is Underwater State..
             {
                 IsSleepFromState = true; //Keep Sleeping if you are in Underwater
             }

@@ -110,6 +110,12 @@ namespace MalbersAnimations.Controller
             }
         }
 
+        private void OnValidate()
+        {
+            if (MaxWaitTime < MinWaitTime) MinWaitTime = MaxWaitTime;
+            if (MinWaitTime > MaxWaitTime) MaxWaitTime = MinWaitTime;
+        }
+
         private void OnDrawGizmosSelected()
         {
             if (debug)

@@ -20,6 +20,13 @@ public static class MalbersAnimationsExtensions
         return null;
     }
 
+    /// <summary>Search for the Component in the hierarchy up or Down</summary>
+    public static void FindComponent<T>(this MonoBehaviour mb, ref T component) where T : Component
+    {
+        if (component == null)
+            component = mb.GetComponent<T>() ?? mb.GetComponentInParent<T>() ?? mb.GetComponentInChildren<T>();
+    }
+
     /// <summary>returns the delta position from a rotation.</summary>
     public static Vector3 DeltaPositionFromRotate(this Transform transform, Vector3 point, Vector3 axis, float deltaAngle)
     {

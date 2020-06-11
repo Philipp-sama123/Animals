@@ -71,9 +71,9 @@ namespace MalbersAnimations.Controller
         public void ResetGravity() { ResetGravityDirection(); }
 
         /// <summary>The Ground</summary>
-        public void GroundChangesGravity(bool value) 
+        public void GroundChangesGravity(bool value)
         {
-            ground_Changes_Gravity = value; 
+            ground_Changes_Gravity = value;
         }
 
         /// <summary>Aling with no lerp to the Gravity Direction</summary>
@@ -126,7 +126,7 @@ namespace MalbersAnimations.Controller
         public void SetIntID(int value)
         {
             //Debug.Log(value);
-            SetAnimParameter(hash_IDInt, IntID = value);
+            SetIntParameter(hash_IDInt, IntID = value);
         }
 
         /// <summary> Set the Parameter Random to a value and pass it also to the Animator </summary>
@@ -135,18 +135,19 @@ namespace MalbersAnimations.Controller
             if (hasRandom)
             {
                 RandomID = Randomizer && !IsPlayingMode ? value : 0;
-                SetAnimParameter(hash_Random, RandomID);
+                SetIntParameter(hash_Random, RandomID);
             }
         }
 
         public void SetAnimHeight(float value)
         {
             if (hasAnimHeight)
-            SetAnimParameter(hash_AnimHeight, value);
+                SetFloatParameter(hash_AnimHeight, value);
         }
 
         /// <summary> Set the Parameter Float ID to a value and pass it also to the Animator </summary>
-        public void SetFloatID(float value) { SetAnimParameter(hash_IDFloat, IDFloat = value); }
+        public void SetFloatID(float value)
+        { SetFloatParameter(hash_IDFloat, IDFloat = value); }
 
         ///// <summary>Set a Random number to ID Int , that work great for randomly Play More animations</summary>
         //protected void SetIntIDRandom(int range) { SetIntID(IntID = Random.Range(1, range + 1)); }
@@ -165,8 +166,8 @@ namespace MalbersAnimations.Controller
 
 
         /// <summary>Returns if the Animal has a state by its int ID value</summary>
-        public bool HasState(int ID)   { return statesD.ContainsKey(ID); }
-        
+        public bool HasState(int ID) { return statesD.ContainsKey(ID); }
+
         /// <summary>Returns if the Animal has a state by its name</summary>
         public bool HasState(string statename)
         {
@@ -177,7 +178,7 @@ namespace MalbersAnimations.Controller
         /// <summary>Force the Activation of an state regarding if is enable or not</summary>
         public virtual void State_SetStatus(int status)
         {
-            if (hasStateStatus) SetAnimParameter(hash_StateStatus, StateStatus = status);
+            if (hasStateStatus) SetIntParameter(hash_StateStatus, StateStatus = status);
         }
 
         public virtual void State_Enable(StateID ID) { State_Enable(ID.ID); }
@@ -191,7 +192,7 @@ namespace MalbersAnimations.Controller
             }
             else
             {
-                Debug.LogWarning("There's no State with the ID: <B>"+ID+"</B> to Enable");
+                Debug.LogWarning("There's no State with the ID: <B>" + ID + "</B> to Enable");
             }
         }
 
@@ -219,7 +220,7 @@ namespace MalbersAnimations.Controller
             {
                 Debug.LogWarning("There's no State with the ID: <B>" + ID + "</B> to Force Activate");
             }
-        } 
+        }
 
         /// <summary>  Allow Lower States to be activated  </summary>
         public virtual void State_AllowExit(StateID ID) { State_AllowExit(ID.ID); }
@@ -259,7 +260,7 @@ namespace MalbersAnimations.Controller
         {
             if (statesD.TryGetValue(ID, out State NewState))
             {
-                if (NewState.CanBeActivated) 
+                if (NewState.CanBeActivated)
                     NewState.Activate();
             }
         }
@@ -285,11 +286,11 @@ namespace MalbersAnimations.Controller
         }
 
         /// <summary> Call the Reset State on the given State </summary>
-        public virtual void State_Reset(StateID ID)    { State_Reset(ID.ID); }
+        public virtual void State_Reset(StateID ID) { State_Reset(ID.ID); }
 
         ///<summary> Find to the Possible State and store it to the (PreState) using an StateID value</summary>
-        public virtual void State_Pin(StateID stateID)  { State_Pin(stateID.ID); }
-      
+        public virtual void State_Pin(StateID stateID) { State_Pin(stateID.ID); }
+
         ///<summary> Find to the Possible State and store it to the (PreState) using an int value</summary>
         public virtual void State_Pin(int stateID)
         {
@@ -318,21 +319,21 @@ namespace MalbersAnimations.Controller
 
         #region Modes
         public bool HasMode(ModeID ID) { return HasMode(ID.ID); }
-        public bool HasMode(int ID)       
-        {            
+        public bool HasMode(int ID)
+        {
             return modes.Find(x => x.ID == ID) != null;
         }
 
         /// <summary> Returns a Mode by its ID</summary>
-        public virtual Mode Mode_Get(ModeID ModeID)   { return Mode_Get(ModeID.ID); }
+        public virtual Mode Mode_Get(ModeID ModeID) { return Mode_Get(ModeID.ID); }
 
 
         /// <summary> Returns a Mode by its ID</summary>
-        public virtual Mode Mode_Get(int ModeID)  { return modes.Find(x => x.ID.ID == ModeID); }
+        public virtual Mode Mode_Get(int ModeID) { return modes.Find(x => x.ID.ID == ModeID); }
 
         /// <summary>Activate a Random Ability on the Animal using a Mode ID</summary>
         public virtual void Mode_Activate(ModeID ModeID) { Mode_Activate(ModeID.ID, -1); }
-       
+
         /// <summary>Adds a listener to a Mode Ability On Enter </summary>
         public virtual void Mode_Ability_AddListenerEnter(string AbilityName, UnityAction action)
         {
@@ -436,7 +437,7 @@ namespace MalbersAnimations.Controller
         {
             var mode = Mode_Get(ModeID);
 
-            if (mode != null && mode.active && AbilityIndex !=0)
+            if (mode != null && mode.active && AbilityIndex != 0)
             {
                 Pin_Mode = mode;
                 Pin_Mode.AbilityIndex = AbilityIndex;
@@ -464,7 +465,7 @@ namespace MalbersAnimations.Controller
         }
 
         /// <summary>Stop all modes </summary>
-        public virtual void Mode_Stop() 
+        public virtual void Mode_Stop()
         {
             ActiveMode = null;
             SetModeParameters(null);
@@ -472,12 +473,12 @@ namespace MalbersAnimations.Controller
         }
 
         /// <summary>Set IntID to -2 to exit the Mode Animation</summary>
-        public virtual void Mode_Interrupt() 
+        public virtual void Mode_Interrupt()
         {
             SetIntID(Int_ID.Interrupted);//Means the Mode is interrupted
             if (IsPlayingMode) LastModeStatus = MStatus.Interrupted;
-        }         
-        
+        }
+
 
         /// <summary>Disable a Mode by his ID</summary>
         public virtual void Mode_Disable(ModeID id) { Mode_Disable((int)id); }
@@ -495,7 +496,7 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Enable a Mode by his ID</summary>
         public virtual void Mode_Enable(ModeID id)
-        { Mode_Enable( id.ID); }
+        { Mode_Enable(id.ID); }
 
         /// <summary>Enable a Mode by his ID</summary>
         public virtual void Mode_Enable(int id)
@@ -521,6 +522,8 @@ namespace MalbersAnimations.Controller
                 Pin_Mode = pin;
 
         }
+
+    
 
 
         /// <summary>Pin an Ability on the Pin Mode to Activate later</summary>
@@ -582,7 +585,7 @@ namespace MalbersAnimations.Controller
         /// <summary> Get the Inputs for the Source to add it to the States </summary>
         internal virtual void GetInputs(bool active)
         {
-           if (active) InputSource = GetComponent<IInputSource>(); //If are being enable then
+            if (active) InputSource = GetComponent<IInputSource>(); //If are being enable then
 
             if (InputSource != null)
             {
@@ -680,6 +683,11 @@ namespace MalbersAnimations.Controller
         /// <summary> Changes the Speed Down </summary>
         public virtual void SpeedDown() { Speed_Add(-1); }
 
+        public virtual MSpeedSet SpeedSet_Get(string name)
+        {
+            return speedSets.Find(x => x.name == name);
+        }
+
         /// <summary>Set a custom speed created via script and it uses it as the Current Speed Modifier (used on the Fall and Jump State)</summary>
         public virtual void SetCustomSpeed(MSpeed customSpeed, bool keepInertiaSpeed = false)
         {
@@ -716,6 +724,7 @@ namespace MalbersAnimations.Controller
 
             SprintSpeed = SP[sprintSpeed - 1];
             if (CurrentSpeedSet != null) CurrentSpeedSet.CurrentIndex = speedIndex; //Keep the Speed saved on the state too in case the active speed was changed
+
         }
 
         /// <summary> Set an specific Speed for a State </summary>
@@ -730,7 +739,7 @@ namespace MalbersAnimations.Controller
 
         public virtual void SpeedSet_Set_Active(string SpeedSetName, int activeIndex)
         {
-            var speedSet = speedSets.Find(x => x.name == SpeedSetName);
+            var speedSet = SpeedSet_Get(SpeedSetName);
 
             if (speedSet != null)
             {
@@ -821,7 +830,7 @@ namespace MalbersAnimations.Controller
             }
         }
 
-
+        /// <summary>Store all the Animal Colliders </summary>
         internal void GetAnimalColliders()
         {
            var colls = GetComponentsInChildren<Collider>(true).ToList();      //Get all the Active colliders
@@ -830,7 +839,7 @@ namespace MalbersAnimations.Controller
 
             foreach (var item in colls)
             {
-                if (!item.isTrigger && item.gameObject.layer == gameObject.layer) colliders.Add(item);        //Add the Animal Colliders Only
+                if (!item.isTrigger/* && item.gameObject.layer == gameObject.layer*/) colliders.Add(item);        //Add the Animal Colliders Only
             }
         }
 
@@ -857,6 +866,9 @@ namespace MalbersAnimations.Controller
             if (MI) MI.enabled = false;
         }
         #endregion
+
+        public void LockAnimal(bool sleep)
+        { Sleep = sleep; }
 
         /// <summary>InertiaPositionSpeed = TargetSpeed</summary>
         public void KeepInertiaSpeedModifier() { InertiaPositionSpeed = TargetSpeed; }

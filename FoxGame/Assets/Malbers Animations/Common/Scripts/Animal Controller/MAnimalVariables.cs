@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using MalbersAnimations.Events;
 using MalbersAnimations.Scriptables;
+using System;
 
 namespace MalbersAnimations.Controller
 {
     /// Variables
     public partial class MAnimal
     {
+        /// <summary>Sets a Bool Parameter on the Animator</summary>
+        public Action<int,bool> SetBoolParameter;
+        /// <summary>Sets a float Parameter on the Animator</summary>
+        public Action<int, float> SetFloatParameter;
+        /// <summary>Sets a Integer Parameter on the Animator</summary>
+        public Action<int, int> SetIntParameter;
+
+
         #region Static Properties
         /// <summary>List of all the animals on the scene</summary>
         public static List<MAnimal> Animals;
@@ -60,8 +69,11 @@ namespace MalbersAnimations.Controller
             get => lastState; 
             internal set
             {
+                if (StateQueued != null) //HACK FOR QUEUE STATES
+                    value = StateQueued;
+
                 lastState = value;
-                SetAnimParameter(hash_LastState, (int)lastState.ID);          //Sent to the Animator the previews Active State 
+                SetIntParameter(hash_LastState, lastState.ID);               //Sent to the Animator the previews Active State 
             }
         }
 
@@ -70,10 +82,8 @@ namespace MalbersAnimations.Controller
 
         /// <summary> Store on the Animal a Queued State</summary>
         public State StateQueued { get; private set; }
-        internal void QueueState(State state)
-        { StateQueued = LastState = state; }
-
-
+        internal void QueueState(State state)  { StateQueued = state; }
+    
         /// <summary>Used to call the Last State one more time before it changes to the new state </summary>
         public bool JustActivateState { get; internal set; }
 
@@ -92,7 +102,7 @@ namespace MalbersAnimations.Controller
 
                 ActiveStateID = activeState.ID;
 
-                SetAnimParameter(hash_State, activeState.ID.ID);           //Sent to the Animator the value to Apply  
+                SetIntParameter(hash_State, activeState.ID.ID);           //Sent to the Animator the value to Apply  
                 OnStateChange.Invoke(ActiveStateID);
 
                 foreach (var st in states)
@@ -130,9 +140,9 @@ namespace MalbersAnimations.Controller
         public LayerMask GroundLayer => groundLayer.Value;
 
         /// <summary>Distance from the Pivots to the ground </summary>
-        private float height = 1f;
+        public float height = 1f;
         /// <summary>Height from the ground to the hip multiplied for the Scale Factor</summary>
-        public float Height { get; protected set; }
+        public float Height { get; private set; }
 
         /// <summary>The Scale Factor of the Animal.. if the animal has being scaled this is the multiplier for the raycasting things </summary>
         public float ScaleFactor { get; protected set; }
@@ -173,7 +183,7 @@ namespace MalbersAnimations.Controller
                 enter?.OnEnter.Invoke();
 
 
-                if (hasStance) SetAnimParameter(hash_Stance, currentStance);
+                if (hasStance) SetIntParameter(hash_Stance, currentStance);
             }
         }
         #endregion
@@ -478,8 +488,7 @@ namespace MalbersAnimations.Controller
             private set
             {
                 modeID = value;
-                SetAnimParameter(hash_Mode, modeID);
-                //   OnModeChange.Invoke(modeID); //On Mode Change
+                SetIntParameter(hash_Mode, modeID);
             }
         }
 
@@ -704,7 +713,10 @@ namespace MalbersAnimations.Controller
                     //Debug.Log("Grounded: " + value);
                     grounded = value;
                     if (!value) platform = null; //If groundes is false remove the stored Platform 
-                    SetAnimParameter(hash_Grounded, Grounded);
+
+                    SetBoolParameter(hash_Grounded, Grounded);
+
+                    //SetAnimParameter(hash_Grounded, Grounded);
                     OnGrounded.Invoke(grounded);
 
                     if (grounded)

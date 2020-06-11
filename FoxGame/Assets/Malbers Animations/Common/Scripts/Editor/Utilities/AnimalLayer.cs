@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
@@ -17,7 +17,6 @@ namespace MalbersAnimations
             CreateLayer();
             CreateTag("Fly");
             CreateTag("Climb");
-            CreateTag("Stair");
             // CreateInputAxe();
         }
 

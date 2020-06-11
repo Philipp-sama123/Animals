@@ -83,6 +83,10 @@ namespace MalbersAnimations.Utilities
             return layerMask == (layerMask | (1 << collider.gameObject.layer));
         }
 
+
+       
+
+
         public static void DrawTriggers(Transform transform,Collider Trigger, Color DebugColor)
         {
             Gizmos.color = DebugColor;

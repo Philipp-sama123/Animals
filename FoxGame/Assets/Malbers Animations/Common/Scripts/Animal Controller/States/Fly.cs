@@ -130,7 +130,7 @@ namespace MalbersAnimations.Controller
         {
             verticalInertia = MalbersTools.CleanUpVector(animal.DeltaPos, animal.Forward, animal.Right);
             acceleration = 0;
-            animal.LastState = this; //IMPORTANT for Modes that changes the Last state enter
+            animal.LastState = this; //IMPORTANT for Modes that changes the Last state enter ?????????????????????????
 
             animal.InertiaPositionSpeed = Vector3.ProjectOnPlane(animal.DeltaPos, animal.Up); //Keep the Speed from the take off
             animal.currentSpeedModifier.Vertical = 2;
@@ -176,9 +176,7 @@ namespace MalbersAnimations.Controller
 
 
                 if (General.FreeMovement)
-                    animal.FreeMovementRotator(limit, Bank, deltatime);
-
-
+                    animal.FreeMovementRotator(limit, Bank, deltatime); 
 
                 if (AvoidWater)
                 {
@@ -287,7 +285,7 @@ namespace MalbersAnimations.Controller
                 {
                     if (LandHit[0].distance < LandDistance) animal.Grounded = true; //Means the animal is touching the ground
 
-                    if (debug) Debug.Log("Can Land True: Ground Touched: " + LandHit[0].collider.name);
+                    if (debug && animal.debugStates) Debug.Log("Can Land True: Ground Touched: " + LandHit[0].collider.name);
 
                     AllowExit();  //Let the other states to awake (Ground)
                     return;

@@ -3,9 +3,7 @@ using UnityEngine;
 
 namespace MalbersAnimations
 {
-    /// <summary>
-    /// This will manage the steps sounds and tracks for each animal, on each feet there's a Script StepTriger (Basic)
-    /// </summary>
+    /// <summary> This will manage the steps sounds and tracks for each animal, on each feet there's a Script StepTriger (Basic)  </summary>
     public class StepsManager : MonoBehaviour, IAnimatorListener
     {
         [Tooltip("Enable Disable the Steps Manager")]
