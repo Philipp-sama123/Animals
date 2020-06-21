@@ -59,26 +59,26 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Keep a Track of all the Zones on the Scene </summary>
         public static List<ZoneChangeActivePlayer> Zones;
-
-        /// <summary>Retuns the ID of the Zone regarding the Type of Zone(State,Stance,Mode) </summary>
-        public int GetID
-        {
-            get
-            {
-                switch (zoneType)
+        /*
+                /// <summary>Retuns the ID of the Zone regarding the Type of Zone(State,Stance,Mode) </summary>
+                public int GetID
                 {
-                    case ZoneType.Mode:
-                        return modeID;
-                    case ZoneType.State:
-                        return stateID;
-                    case ZoneType.Stance:
-                        return stateID;
-                    default:
-                        return 0;
+                    get
+                    {
+                        switch (zoneType)
+                        {
+                            case ZoneType.Mode:
+                                return modeID;
+                            case ZoneType.State:
+                                return stateID;
+                            case ZoneType.Stance:
+                                return stateID;
+                            default:
+                                return 0;
+                        }
+                    }
                 }
-            }
-        }
-
+        */
         /// <summary>Is the zone a Mode Zone</summary>
         public bool IsMode => zoneType == ZoneType.Mode;
 
@@ -151,10 +151,11 @@ namespace MalbersAnimations.Controller
                 OnExit.Invoke(CurrentAnimal);                                      //Invoke On Exit when all animal's colliders has exited the Zone
                 StatModifierOnExit.ModifyStat(AnimalStats);                         //Modify the stats when exit
 
-                if (zoneType == ZoneType.Stance && stanceAction == StanceAction.Stay && CurrentAnimal.Stance == stanceID.ID)
-                {
-                    CurrentAnimal.Stance_Reset();
-                }
+                /*                if (zoneType == ZoneType.Stance && stanceAction == StanceAction.Stay && CurrentAnimal.Stance == stanceID.ID)
+                                {
+                                    CurrentAnimal.Stance_Reset();
+                                }
+                */
 
                 ResetStoredAnimal();
             }
@@ -175,12 +176,13 @@ namespace MalbersAnimations.Controller
                 case ZoneType.Mode:
                     ActivateModeZone(forced);
                     break;
-                case ZoneType.State:
-                    ActivateStateZone(); //State Zones does not require to be delay or prepared to be activated
-                    break;
-                case ZoneType.Stance:
-                    ActivateStanceZone(); //State Zones does not require to be delay or prepared to be activated
-                    break;
+                    /*          case ZoneType.State:
+                            ActivateStateZone(); //State Zones does not require to be delay or prepared to be activated
+                            break;
+                           case ZoneType.Stance:
+                                     ActivateStanceZone(); //State Zones does not require to be delay or prepared to be activated
+                                     break;
+                            */
             }
         }
 
@@ -231,33 +233,35 @@ namespace MalbersAnimations.Controller
             StatModifierOnActive.ModifyStat(AnimalStats);
             OnZoneActivation.Invoke(CurrentAnimal);
         }
+        /* 
+       /// <summary>Enables the Zone using the Stance</summary>
 
-        /// <summary>Enables the Zone using the Stance</summary>
-        private void ActivateStanceZone()
-        {
-            // CurrentAnimal.Mode_Interrupt(); //in case the Animal is doing a mode Interrupt it
+       *  private void ActivateStanceZone()
+       {
+           // CurrentAnimal.Mode_Interrupt(); //in case the Animal is doing a mode Interrupt it
 
-            switch (stanceAction)
-            {
-                case StanceAction.Enter:
-                    CurrentAnimal.Stance_Set(stanceID);
-                    break;
-                case StanceAction.Exit:
-                    CurrentAnimal.Stance_Reset();
-                    break;
-                case StanceAction.Toggle:
-                    CurrentAnimal.Stance_Toggle(stanceID);
-                    break;
-                case StanceAction.Stay:
-                    CurrentAnimal.Stance_Set(stanceID);
-                    break;
-                default:
-                    break;
-            }
+      switch (stanceAction)
+           {
+               case StanceAction.Enter:
+                   CurrentAnimal.Stance_Set(stanceID);
+                   break;
+               case StanceAction.Exit:
+                   CurrentAnimal.Stance_Reset();
+                   break;
+               case StanceAction.Toggle:
+                   CurrentAnimal.Stance_Toggle(stanceID);
+                   break;
+               case StanceAction.Stay:
+                   CurrentAnimal.Stance_Set(stanceID);
+                   break;
+               default:
+                   break;
+           }
 
-            StatModifierOnActive.ModifyStat(AnimalStats);
-            OnZoneActivation.Invoke(CurrentAnimal);
-        }
+           StatModifierOnActive.ModifyStat(AnimalStats);
+           OnZoneActivation.Invoke(CurrentAnimal);
+       }
+      */
 
         public virtual void Animal_StopMoving()
         {
@@ -301,7 +305,7 @@ namespace MalbersAnimations.Controller
             StatModifierOnActive.ModifyStat(AnimalStats);
             OnZoneActivation.Invoke(CurrentAnimal);
             Destroy(CurrentAnimal); // todo stuff (!) 
-           
+
             if (RemoveAnimalOnActive)
             {
                 ResetStoredAnimal();
