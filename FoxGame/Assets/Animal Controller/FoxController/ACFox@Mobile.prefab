@@ -1264,7 +1264,6 @@ GameObject:
   - component: {fileID: 5386940462969705752}
   - component: {fileID: 2142751577}
   - component: {fileID: 2142751578}
-  - component: {fileID: 2029755602}
   m_Layer: 8
   m_Name: ACFox@Mobile
   m_TagString: Animal
@@ -1344,8 +1343,8 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 1
-  Editor_Tabs2: 4
+  Editor_Tabs1: 4
+  Editor_Tabs2: 0
   SelectedMode: 3
   hitLayer:
     serializedVersion: 2
@@ -1372,6 +1371,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
     Variable: {fileID: 0}
+  height: 1
   currentStance: 0
   defaultStance: 0
   AnimatorSpeed:
@@ -2311,7 +2311,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       rotation:
         UseConstant: 1
-        ConstantValue: 3
+        ConstantValue: 4
         Variable: {fileID: 0}
       sprint: 1
       lerpRotation:
@@ -3522,40 +3522,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   debug: 1
---- !u!114 &2029755602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5451798368540637177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e018d88fdcd394a4c8254460a5394eaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Editor_Tabs1: 0
-  stoppingDistance: 1
-  walkDistance: 0
-  target: {fileID: 0}
-  AutoNextTarget: 0
-  AutoInteract: 0
-  MoveAgentOnMovingTarget: 1
-  LookAtTargetOnArrival: 1
-  MovingTargetInterval: 0.2
-  updateTargetPosition: 1
-  debug: 0
-  debugGizmos: 0
-  OnTargetPositionArrived:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTargetArrived:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTargetSet:
-    m_PersistentCalls:
-      m_Calls: []
-  pointType: 0
 --- !u!1 &5451799072636722701
 GameObject:
   m_ObjectHideFlags: 0

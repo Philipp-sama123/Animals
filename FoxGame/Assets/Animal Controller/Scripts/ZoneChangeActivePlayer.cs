@@ -5,6 +5,7 @@ using MalbersAnimations.Scriptables;
 using UnityEngine.Events;
 using MalbersAnimations.Utilities;
 using MalbersAnimations.Events;
+using Cinemachine;
 
 namespace MalbersAnimations.Controller
 {
@@ -26,6 +27,10 @@ namespace MalbersAnimations.Controller
         public StanceAction stanceAction = StanceAction.Enter;
 
         [SerializeField] private Tag m_tag;
+
+        [SerializeField] private GameObject animalPrefab;
+        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private CinemachineVirtualCamera activeCamera;
 
         public ModeID modeID;
         public StateID stateID;
@@ -304,7 +309,18 @@ namespace MalbersAnimations.Controller
         {
             StatModifierOnActive.ModifyStat(AnimalStats);
             OnZoneActivation.Invoke(CurrentAnimal);
-            Destroy(CurrentAnimal); // todo stuff (!) 
+            GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
+
+            CurrentAnimal.GetComponent <MEventListener>().enabled = false; 
+            MAnimal animalToDisable = CurrentAnimal.GetComponent<MAnimal>();
+            animalToDisable.isPlayer.Value = false;
+
+            activeCamera.LookAt = newAnimal.transform;
+            activeCamera.Follow = newAnimal.transform; 
+
+
+            animalToDisable.State_Activate(stateID); 
+            //  Destroy(CurrentAnimal); // todo stuff (!) 
 
             if (RemoveAnimalOnActive)
             {
