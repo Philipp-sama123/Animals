@@ -212,32 +212,7 @@ namespace MalbersAnimations.Controller
 
 
         /// <summary>Enables the Zone using the State</summary>
-        private void ActivateStateZone()
-        {
-            switch (stateAction)
-            {
-                case StateAction.Activate:
-                    CurrentAnimal.State_Activate(stateID);
-                    break;
-                case StateAction.AllowExit:
-                    if (CurrentAnimal.ActiveStateID == stateID) CurrentAnimal.ActiveState.AllowExit();
-                    break;
-                case StateAction.ForceActivate:
-                    CurrentAnimal.State_Force(stateID);
-                    break;
-                case StateAction.Enable:
-                    CurrentAnimal.State_Enable(stateID);
-                    break;
-                case StateAction.Disable:
-                    CurrentAnimal.State_Disable(stateID);
-                    break;
-                default:
-                    break;
-            }
 
-            StatModifierOnActive.ModifyStat(AnimalStats);
-            OnZoneActivation.Invoke(CurrentAnimal);
-        }
         /* 
        /// <summary>Enables the Zone using the Stance</summary>
 
@@ -311,21 +286,25 @@ namespace MalbersAnimations.Controller
             OnZoneActivation.Invoke(CurrentAnimal);
             GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
 
-            CurrentAnimal.GetComponent <MEventListener>().enabled = false; 
+            CurrentAnimal.GetComponent<MEventListener>().enabled = false;
             MAnimal animalToDisable = CurrentAnimal.GetComponent<MAnimal>();
             animalToDisable.isPlayer.Value = false;
 
             activeCamera.LookAt = newAnimal.transform;
-            activeCamera.Follow = newAnimal.transform; 
+            activeCamera.Follow = newAnimal.transform;
 
+            AnimalController player = GameObject.FindObjectOfType<AnimalController>();
+            if (player != null) player.DestroyGameObject(3);  // destroy active player
+            Zone_Destroy(0);// destroy zone
+            //  --> Death(?)   animalToDisable.State_Activate(stateID); 
 
-            animalToDisable.State_Activate(stateID); 
-            //  Destroy(CurrentAnimal); // todo stuff (!) 
+            //    GameObject obj = GameObject.Find("ACRaccoon@Mobile");
+            //    if (obj != null) Destroy(obj);
 
-            if (RemoveAnimalOnActive)
-            {
-                ResetStoredAnimal();
-            }
+            // if (RemoveAnimalOnActive)
+            //{
+            //   ResetStoredAnimal();
+            // }
         }
 
         /// <summary> Destroy the Zone after x Time</summary>
@@ -386,35 +365,4 @@ namespace MalbersAnimations.Controller
         [HideInInspector] public bool EditorShowEvents = false;
         [HideInInspector] public bool ShowStatModifiers = false;
     }
-    /*
-    public enum StateAction
-    {
-        /// <summary>Tries to Activate the State of the Zone</summary>
-        Activate,
-        /// <summary>If the Animal is already on the state of the zone it will allow to exit and activate states below the Active one</summary>
-        AllowExit,
-        /// <summary>Force the State of the Zone to be enable even if it cannot be activate at the moment</summary>
-        ForceActivate,
-        /// <summary>Enable a  Disabled State </summary>
-        Enable,
-        /// <summary>Disable State </summary>
-        Disable
-    }
-    public enum StanceAction
-    {
-        /// <summary>Enters a Stance</summary>
-        Enter,
-        /// <summary>Exits a Stance</summary>
-        Exit,
-        /// <summary>Toggle a Stance</summary>
-        Toggle,
-        /// <summary>While the Animal is inside the collider the Animal will stay on the Stance</summary>
-        Stay,
-    }
-    public enum ZoneType
-    {
-        Mode,
-        State,
-        Stance
-    }*/
 }

@@ -25,13 +25,13 @@ public class ActivePlayerChanger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collider: " + other);
+        Debug.LogError("collider: " + other);
         MAnimal newAnimal = other.GetComponentInParent<MAnimal>();
         // Todo maybe display clickable button on screen --> touch change character ! 
     }
     private void OnCollissionEnter(Collider other)
     {
-        Debug.Log("collider: " + other);
+        Debug.LogError("collider: " + other);
         // Todo maybe display clickable button on screen --> touch change character ! 
     }
 }
