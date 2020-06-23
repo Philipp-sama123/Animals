@@ -1508,9 +1508,9 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 3
+  Editor_Tabs1: 2
   Editor_Tabs2: 4
-  SelectedMode: 2
+  SelectedMode: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1566,6 +1566,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
     Variable: {fileID: 0}
+  height: 1
   currentStance: 0
   defaultStance: 0
   AnimatorSpeed:
