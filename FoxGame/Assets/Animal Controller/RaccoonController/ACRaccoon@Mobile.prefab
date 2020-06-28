@@ -814,7 +814,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4982845606617660235}
   - component: {fileID: 4934258950128761627}
-  - component: {fileID: 4984449875337355282}
   - component: {fileID: 4984449875337355281}
   - component: {fileID: 4984449875337355280}
   - component: {fileID: 6419407676983261102}
@@ -825,7 +824,8 @@ GameObject:
   - component: {fileID: 164737685}
   - component: {fileID: 828832138}
   - component: {fileID: 828832149}
-  m_Layer: 20
+  - component: {fileID: 828832150}
+  m_Layer: 8
   m_Name: ACRaccoon@Mobile
   m_TagString: Animal
   m_Icon: {fileID: 0}
@@ -868,630 +868,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4984449875337355282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4984449875337355287}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12fd74a46159fd04b9a3d3d643cdb50f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputs:
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Jump
-    type: 1
-    input: Jump
-    key: 32
-    GetPressed: 0
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Sprint
-    type: 1
-    input: Fire3
-    key: 304
-    GetPressed: 0
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4984449875337355281}
-          m_MethodName: set_Sprint
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 0
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Attack1
-    type: 1
-    input: Fire1
-    key: 323
-    GetPressed: 0
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Attack2
-    type: 1
-    input: InputValue
-    key: 324
-    GetPressed: 0
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 0
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Speed ++
-    type: 1
-    input: SpeedUp
-    key: 50
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SpeedUp
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 0
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Speed --
-    type: 1
-    input: SpeedDown
-    key: 49
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SpeedDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 0
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Action
-    type: 1
-    input: Action
-    key: 101
-    GetPressed: 0
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Damage
-    type: 1
-    input: InputValue
-    key: 106
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4984449875337355281}
-          m_MethodName: Mode_Enable
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 528c5492691d84841bb817787a8fcff5,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Kill
-    type: 1
-    input: InputValue
-    key: 107
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: State_Activate
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: adfa24f62d6db4d40a1d837f4ec1a6e9,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StateID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Stand
-    type: 1
-    input: InputValue
-    key: 113
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: StanceToggle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d20c58a6c98bd7d459f72619ef626525,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StanceID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Sneak
-    type: 1
-    input: InputValue
-    key: 99
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: StanceToggle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: fbd7296ce55e10746a1ec32a2fcd406a,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StanceID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Combat
-    type: 1
-    input: InputValue
-    key: 117
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: StanceToggle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 5338df2a5c63c6b4a8049349b3eb0171,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StanceID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Wounded
-    type: 1
-    input: InputValue
-    key: 121
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: StanceToggle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: c6d503bfa45d6e84185aafc03bf1ddb8,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StanceID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  - active:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
-    name: Roll
-    type: 1
-    input: InputValue
-    key: 116
-    GetPressed: 1
-    InputValue: 0
-    OnInputDown:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4984449875337355281}
-          m_MethodName: StanceToggle
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: bf4ee793d649abd408ad072ad53d2273,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.StanceID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnInputUp:
-      m_PersistentCalls:
-        m_Calls: []
-    OnLongPress:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDoubleTap:
-      m_PersistentCalls:
-        m_Calls: []
-    OnInputChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    DoubleTapTime: 0.3
-    LongPressTime: 0.5
-    OnInputPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPressedNormalized:
-      m_PersistentCalls:
-        m_Calls: []
-  showInputEvents: 1
-  OnInputEnabled:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInputDisabled:
-    m_PersistentCalls:
-      m_Calls: []
-  PlayerID: Player0
-  Horizontal:
-    active: 1
-    name: Horizontal
-    raw: 1
-    input: Horizontal
-    OnAxisValueChanged:
-      m_PersistentCalls:
-        m_Calls: []
-  Vertical:
-    active: 1
-    name: Vertical
-    raw: 1
-    input: Vertical
-    OnAxisValueChanged:
-      m_PersistentCalls:
-        m_Calls: []
-  UpDown:
-    active: 0
-    name: UpDown
-    raw: 1
-    input: UpDown
-    OnAxisValueChanged:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &4984449875337355281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,9 +884,9 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 2
+  Editor_Tabs1: 0
   Editor_Tabs2: 4
-  SelectedMode: 0
+  SelectedMode: 3
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1609,7 +985,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   TurnMultiplier:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 2
     Variable: {fileID: 0}
   UpDownLerp:
     UseConstant: 1
@@ -2622,7 +1998,7 @@ MonoBehaviour:
       ConstantValue: 2
       Variable: {fileID: 0}
     Speeds:
-    - name: SpeedName
+    - name: Swim
       nameHash: 1429068242
       Vertical:
         UseConstant: 1
@@ -2653,7 +2029,7 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 4
         Variable: {fileID: 0}
-    - name: SpeedName
+    - name: Swim Sprint
       nameHash: 1429068242
       Vertical:
         UseConstant: 1
@@ -2743,7 +2119,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       animator:
         UseConstant: 1
-        ConstantValue: 1.3
+        ConstantValue: 1.4
         Variable: {fileID: 0}
       lerpAnimator:
         UseConstant: 1
@@ -2830,7 +2206,7 @@ MonoBehaviour:
   useSprintGlobal:
     UseConstant: 1
     ConstantValue: 1
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 14318e9dbd30a734ca3b37de085363bd, type: 2}
   currentAnimTag: 0
   OnAnimationChange:
     m_PersistentCalls:
@@ -3024,7 +2400,7 @@ MonoBehaviour:
     OnValueChangeNormalized:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 1879c9647aae69c4885262c9e67ab543, type: 2}
+        - m_Target: {fileID: 11400000, guid: bee0895a0f76ff840bfba0a11f37d898, type: 2}
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -3088,12 +2464,23 @@ MonoBehaviour:
         m_Calls: []
     OnStatEmpty:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4984449875337355281}
+          m_MethodName: set_UseSprint
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnStat:
       m_PersistentCalls:
         m_Calls: []
     Below: 10
-    Above: 20
+    Above: 15
     OnStatBelow:
       m_PersistentCalls:
         m_Calls:
@@ -3113,6 +2500,18 @@ MonoBehaviour:
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 11400000, guid: e366e24250d6a9a408d5d5fa02ba3fe1,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4984449875337355281}
+          m_MethodName: Mode_Disable
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: a1135aaa1fd7f674b84ba0fc71806710,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
             m_IntArgument: 0
@@ -3146,10 +2545,33 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 4984449875337355281}
+          m_MethodName: Mode_Enable
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: a1135aaa1fd7f674b84ba0fc71806710,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 14318e9dbd30a734ca3b37de085363bd, type: 2}
+          m_MethodName: SetValue
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
     OnValueChangeNormalized:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 11400000, guid: 06638c9d6277e184a9041624af4cec7f, type: 2}
+        - m_Target: {fileID: 11400000, guid: 7cf722dd04e074d4eb5c291280cdd5aa, type: 2}
           m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
@@ -3261,7 +2683,7 @@ MonoBehaviour:
     Response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4984449875337355282}
+        - m_Target: {fileID: 0}
           m_MethodName: set_enabled
           m_Mode: 6
           m_Arguments:
@@ -4232,6 +3654,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   debug: 0
+--- !u!114 &828832150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984449875337355287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8255a361f023a45b622c8f8f63c5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4984468883050595287
 GameObject:
   m_ObjectHideFlags: 0
