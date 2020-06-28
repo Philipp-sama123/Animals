@@ -30,13 +30,12 @@ MonoBehaviour:
     IgnoreLowerStates: 1
     LockMovement: 0
     LockInput: 0
-    Colliders: 1
   ExitFrame: 1
   SleepFromState:
   - {fileID: 11400000, guid: 8078fbdb01991b44b9c1351f444b5efe, type: 2}
   SleepFromMode:
-  - {fileID: 11400000, guid: 4dc5ca673dc60d346a62529c8a9bd8ff, type: 2}
-  - {fileID: 11400000, guid: 1286867ad3c4cdd4baacac3373aff92c, type: 2}
+  - {fileID: 11400000, guid: 5ac0955c0eb28a242ae6f5bf2d6a4744, type: 2}
+  - {fileID: 11400000, guid: dcc9fa929a36adf4c99150f8903ee978, type: 2}
   QueueFrom: []
   TagModifiers:
   - AnimationTag: JumpStart
@@ -54,7 +53,6 @@ MonoBehaviour:
       IgnoreLowerStates: 1
       LockMovement: 0
       LockInput: 0
-      Colliders: 0
   - AnimationTag: JumpEnd
     modifier:
       modify: 2303
@@ -70,7 +68,6 @@ MonoBehaviour:
       IgnoreLowerStates: 0
       LockMovement: 0
       LockInput: 0
-      Colliders: 1
   debug: 0
   JumpPressed: 1
   JumpPressedLerp: 2
@@ -91,8 +88,8 @@ MonoBehaviour:
       minValue: 0.5572339
       maxValue: 0.7049344
     CliffLandDistance: 0.75
-    HeightMultiplier: 1
-    ForwardMultiplier: 1
+    HeightMultiplier: 1.5
+    ForwardMultiplier: 1.25
   - name: Forward
     VerticalSpeed: 0.9
     JumpLandDistance: 1.375
@@ -101,8 +98,8 @@ MonoBehaviour:
       minValue: 0.5572339
       maxValue: 0.7049344
     CliffLandDistance: 0.75
-    HeightMultiplier: 1
-    ForwardMultiplier: 1
+    HeightMultiplier: 1.25
+    ForwardMultiplier: 1.25
   - name: Run
     VerticalSpeed: 2.9
     JumpLandDistance: 1.715
@@ -111,5 +108,5 @@ MonoBehaviour:
       minValue: 0.5572339
       maxValue: 0.7049344
     CliffLandDistance: 0.75
-    HeightMultiplier: 1
-    ForwardMultiplier: 1
+    HeightMultiplier: 1.25
+    ForwardMultiplier: 1.25

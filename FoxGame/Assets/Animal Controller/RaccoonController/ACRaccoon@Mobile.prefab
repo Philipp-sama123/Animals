@@ -884,9 +884,9 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 3
+  SelectedMode: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2206,7 +2206,7 @@ MonoBehaviour:
   useSprintGlobal:
     UseConstant: 1
     ConstantValue: 1
-    Variable: {fileID: 11400000, guid: 14318e9dbd30a734ca3b37de085363bd, type: 2}
+    Variable: {fileID: 0}
   currentAnimTag: 0
   OnAnimationChange:
     m_PersistentCalls:
@@ -2476,16 +2476,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    OnStat:
-      m_PersistentCalls:
-        m_Calls: []
-    Below: 10
-    Above: 15
-    OnStatBelow:
-      m_PersistentCalls:
-        m_Calls:
         - m_Target: {fileID: 4984449875337355281}
-          m_MethodName: set_UseSprint
+          m_MethodName: set_Sprint
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2514,6 +2506,36 @@ MonoBehaviour:
             m_ObjectArgument: {fileID: 11400000, guid: a1135aaa1fd7f674b84ba0fc71806710,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    OnStat:
+      m_PersistentCalls:
+        m_Calls: []
+    Below: 15
+    Above: 15
+    OnStatBelow:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4984449875337355281}
+          m_MethodName: set_UseSprint
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4984449875337355281}
+          m_MethodName: set_Sprint
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2556,17 +2578,6 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 11400000, guid: 14318e9dbd30a734ca3b37de085363bd, type: 2}
-          m_MethodName: SetValue
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
           m_CallState: 2
     OnValueChangeNormalized:
       m_PersistentCalls:

@@ -110,8 +110,8 @@ RectTransform:
   m_Father: {fileID: 790523511}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -424,7 +424,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -640,8 +640,8 @@ RectTransform:
   m_Father: {fileID: 1345860196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -714,7 +714,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1068,7 +1068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2000942155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1343,8 +1343,8 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 4
-  Editor_Tabs2: 0
+  Editor_Tabs1: 2
+  Editor_Tabs2: 4
   SelectedMode: 3
   hitLayer:
     serializedVersion: 2
@@ -2067,7 +2067,7 @@ MonoBehaviour:
   - name: Hip
     position: {x: 0, y: 0.6, z: -0.05}
     dir: {x: 0, y: -1, z: 0}
-    multiplier: 1
+    multiplier: 0.75
     interval: 1
     EditorModify: 0
     EditorDisplay: 0
@@ -2075,7 +2075,7 @@ MonoBehaviour:
   - name: Chest
     position: {x: 0, y: 0.6, z: 0.45}
     dir: {x: 0, y: -1, z: 0}
-    multiplier: 1
+    multiplier: 0.75
     interval: 1
     EditorModify: 0
     EditorDisplay: 0
@@ -2229,7 +2229,7 @@ MonoBehaviour:
         Variable: {fileID: 0}
       animator:
         UseConstant: 1
-        ConstantValue: 1.4
+        ConstantValue: 1.45
         Variable: {fileID: 0}
       lerpAnimator:
         UseConstant: 1
@@ -2579,6 +2579,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: bee0895a0f76ff840bfba0a11f37d898, type: 2}
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnValueChange:
       m_PersistentCalls:
         m_Calls: []
@@ -2636,13 +2647,24 @@ MonoBehaviour:
     OnStat:
       m_PersistentCalls:
         m_Calls: []
-    Below: 10
-    Above: 20
+    Below: 15
+    Above: 15
     OnStatBelow:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7510536530740730416}
           m_MethodName: set_UseSprint
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 7510536530740730416}
+          m_MethodName: set_Sprint
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2671,6 +2693,17 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1939002470}
           m_MethodName: set_value
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 7cf722dd04e074d4eb5c291280cdd5aa, type: 2}
+          m_MethodName: Invoke
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -13,20 +13,9 @@ namespace MalbersAnimations.Controller
     /// <summary>When an animal Enters this Zone it will change to an other active animal</summary>
     public class ZoneChangeActivePlayer : MonoBehaviour, IDestination, IInteractable
     {
-        /// <summary>Set the Action Zone to Automatic</summary>
-        public bool automatic;
-        /// <summary>if Automatic is set to true this will be the time to disable temporarly the Trigger</summary>
-        public float AutomaticDisabled = 10f;
-        /// <summary>Use the Trigger for Heads only</summary>
-        public bool HeadOnly;
-        public string HeadName = "Head";
-
-
         public ZoneType zoneType = ZoneType.Mode;
         public StateAction stateAction = StateAction.Activate;
         public StanceAction stanceAction = StanceAction.Enter;
-
-        [SerializeField] private Tag m_tag;
 
         [SerializeField] private GameObject animalPrefab;
         [SerializeField] private Transform spawnPoint;
@@ -34,8 +23,8 @@ namespace MalbersAnimations.Controller
 
         public ModeID modeID;
         public StateID stateID;
-        public StanceID stanceID;
         public Action ActionID;
+
         /// <summary> Mode Index Value</summary>
         [SerializeField] private IntReference modeIndex = new IntReference(0);
 
@@ -46,7 +35,6 @@ namespace MalbersAnimations.Controller
         public MAnimal CurrentAnimal { get; internal set; }
         protected List<Collider> animal_Colliders = new List<Collider>();
 
-        public float ActionDelay = 0;
         public float AnimHeight = 0;
         public bool RemoveAnimalOnActive = false;
 
@@ -64,54 +52,21 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Keep a Track of all the Zones on the Scene </summary>
         public static List<ZoneChangeActivePlayer> Zones;
-        /*
-                /// <summary>Retuns the ID of the Zone regarding the Type of Zone(State,Stance,Mode) </summary>
-                public int GetID
-                {
-                    get
-                    {
-                        switch (zoneType)
-                        {
-                            case ZoneType.Mode:
-                                return modeID;
-                            case ZoneType.State:
-                                return stateID;
-                            case ZoneType.Stance:
-                                return stateID;
-                            default:
-                                return 0;
-                        }
-                    }
-                }
-        */
+
         /// <summary>Is the zone a Mode Zone</summary>
         public bool IsMode => zoneType == ZoneType.Mode;
 
         /// <summary>Is the zone a Mode Zone</summary>
         public bool IsState => zoneType == ZoneType.State;
 
-        /// <summary>Is the zone a Mode Zone</summary>
-        public bool IsStance => zoneType == ZoneType.Stance;
+    
 
-        public Tag Tag { get => m_tag; set => m_tag = value; }
 
         void OnTriggerEnter(Collider other)
         {
             if (other.isTrigger) return;
 
             if (!MalbersTools.CollidersLayer(other, LayerMask.GetMask("Animal"))) return;           //Just accept animal layer only
-            if (HeadOnly && !other.name.Contains(HeadName)) return;                                 //If is Head Only and no head was found Skip
-
-            if (Tag != null)                //Check if we are using Tags and if the entering animal does not have that tag the this zone is not for that animal
-            {
-                //var otherTags = other.GetComponentInParent<Tags>();
-                //if (otherTags == null || !otherTags.HasTag(Tag))
-                if (!other.transform.HasMalbersTagInParent(Tag))
-                {
-                    Debug.LogWarning($"The Zone:<B>[{name}]</B> cannot be activated by <B>[{other.transform.root.name}]</B>. The Zone is using the Tag<B>[{Tag.name}]</B> and <B>[{other.transform.root.name}]</B> does not have it.");
-                    return;
-                }
-            }
 
             MAnimal newAnimal = other.GetComponentInParent<MAnimal>();                              //Get the animal on the entering collider
 
@@ -139,7 +94,6 @@ namespace MalbersAnimations.Controller
         void OnTriggerExit(Collider other)
         {
             if (other.isTrigger) return;
-            if (HeadOnly && !other.name.Contains(HeadName)) return;         //if is only set to head and there's no head SKIP
 
             MAnimal existing_animal = other.GetComponentInParent<MAnimal>();
 
@@ -211,38 +165,6 @@ namespace MalbersAnimations.Controller
         }
 
 
-        /// <summary>Enables the Zone using the State</summary>
-
-        /* 
-       /// <summary>Enables the Zone using the Stance</summary>
-
-       *  private void ActivateStanceZone()
-       {
-           // CurrentAnimal.Mode_Interrupt(); //in case the Animal is doing a mode Interrupt it
-
-      switch (stanceAction)
-           {
-               case StanceAction.Enter:
-                   CurrentAnimal.Stance_Set(stanceID);
-                   break;
-               case StanceAction.Exit:
-                   CurrentAnimal.Stance_Reset();
-                   break;
-               case StanceAction.Toggle:
-                   CurrentAnimal.Stance_Toggle(stanceID);
-                   break;
-               case StanceAction.Stay:
-                   CurrentAnimal.Stance_Set(stanceID);
-                   break;
-               default:
-                   break;
-           }
-
-           StatModifierOnActive.ModifyStat(AnimalStats);
-           OnZoneActivation.Invoke(CurrentAnimal);
-       }
-      */
-
         public virtual void Animal_StopMoving()
         {
             if (CurrentAnimal)
@@ -259,15 +181,10 @@ namespace MalbersAnimations.Controller
                 return;
             }
 
-            if (forced || automatic)
+            if (forced)
             {
                 CurrentAnimal.Mode_Activate(modeID.ID, ModeIndex);
                 OnZONEActive();
-
-                if (automatic)
-                {
-                    StartCoroutine(ZoneColliderONOFF());
-                }
             }
             else//In Case the Zone is not Automatic
             {
@@ -284,18 +201,22 @@ namespace MalbersAnimations.Controller
         {
             StatModifierOnActive.ModifyStat(AnimalStats);
             OnZoneActivation.Invoke(CurrentAnimal);
+
             GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
+            newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
 
             CurrentAnimal.GetComponent<MEventListener>().enabled = false;
-            MAnimal animalToDisable = CurrentAnimal.GetComponent<MAnimal>();
-            animalToDisable.isPlayer.Value = false;
+            CurrentAnimal.GetComponent<MAnimal>().isPlayer.Value = false;
+
 
             activeCamera.LookAt = newAnimal.transform;
             activeCamera.Follow = newAnimal.transform;
 
             AnimalController player = GameObject.FindObjectOfType<AnimalController>();
             if (player != null) player.DestroyGameObject(3);  // destroy active player
-            Zone_Destroy(0);// destroy zone
+            Zone_Destroy(0);
+
+            // destroy zone
             //  --> Death(?)   animalToDisable.State_Activate(stateID); 
 
             //    GameObject obj = GameObject.Find("ACRaccoon@Mobile");
@@ -317,40 +238,7 @@ namespace MalbersAnimations.Controller
                 Destroy(gameObject, time);
             }
         }
-
-        /// <summary> Enable Disable the Zone COllider for and X time</summary>
-        IEnumerator ZoneColliderONOFF() //For Automatic only 
-        {
-            yield return null;
-
-            if (AutomaticDisabled > 0)
-            {
-                ZoneCollider.enabled = false;
-                CurrentAnimal?.ActiveMode?.ResetAbilityIndex();       //Reset the Ability Index when Set to automatic and the Collider is off
-                yield return new WaitForSeconds(AutomaticDisabled);
-                ZoneCollider.enabled = true;
-            }
-            CurrentAnimal = null;                           //clean animal
-            animal_Colliders = new List<Collider>();        //Reset Colliders
-            yield return null;
-        }
-
-        void OnEnable()
-        {
-            if (Zones == null) Zones = new List<ZoneChangeActivePlayer>();
-            ZoneCollider = GetComponent<Collider>();                                   //Get the reference for the collider
-            Zones.Add(this);                                                  //Save the the Action Zones on the global Action Zone list
-        }
-
-
-        void OnDisable()
-        {
-            Zones.Remove(this);                                              //Remove the the Action Zones on the global Action Zone list
-
-            if (CurrentAnimal)
-                ResetStoredAnimal();
-        }
-
+ 
         public void ResetInteraction() {/* Do nothing  */}
 
         public void Interact() { ActivateZone(true); }
