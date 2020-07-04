@@ -1343,7 +1343,7 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 2
+  Editor_Tabs1: 3
   Editor_Tabs2: 4
   SelectedMode: 3
   hitLayer:
@@ -2052,8 +2052,19 @@ MonoBehaviour:
       Variable: {fileID: 0}
     OnAbilityIndex:
       m_PersistentCalls:
-        m_Calls: []
-    ResetToDefault: 0
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: 912391aab29dc2d4990903f5b6a0d911, type: 2}
+          m_MethodName: Invoke
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    ResetToDefault: 1
     allowRotation: 0
     allowMovement: 0
     showGeneral: 1

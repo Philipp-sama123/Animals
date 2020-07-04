@@ -2287,6 +2287,7 @@ GameObject:
   - component: {fileID: 1518893232130456313}
   - component: {fileID: 1518893232130456303}
   - component: {fileID: 2252958069771298082}
+  - component: {fileID: 1673618972}
   m_Layer: 9
   m_Name: ACFox@EnemyAI 1
   m_TagString: Animal
@@ -2365,7 +2366,7 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 2
+  Editor_Tabs1: 3
   Editor_Tabs2: 4
   SelectedMode: 1
   hitLayer:
@@ -4046,6 +4047,24 @@ MonoBehaviour:
       m_Calls: []
   TasksTimeElapsed: []
   DecisionsTimeElapsed: []
+--- !u!114 &1673618972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705576756844995588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de963c5b6ffa62741a32c176d256a2ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModeID: {fileID: 11400000, guid: 5f0e9ab5c9d12394a9f89aaabebba343, type: 2}
+  AnimalsOnly: 1
+  LookRadius: 2
+  AlignTime: 0.1
+  debugColor: {r: 1, g: 0.5, b: 0, a: 0.2}
+  animal: {fileID: 7835176214384265677}
 --- !u!1 &5705607091517537122
 GameObject:
   m_ObjectHideFlags: 0

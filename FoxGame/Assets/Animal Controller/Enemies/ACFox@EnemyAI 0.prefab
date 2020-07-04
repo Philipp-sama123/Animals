@@ -2287,6 +2287,7 @@ GameObject:
   - component: {fileID: 1518893232130456313}
   - component: {fileID: 1518893232130456303}
   - component: {fileID: 2252958069771298082}
+  - component: {fileID: 1888875298}
   m_Layer: 9
   m_Name: ACFox@EnemyAI 0
   m_TagString: Animal
@@ -2365,7 +2366,7 @@ MonoBehaviour:
   PivotPosDir: 0
   showStates: 1
   ModeShowAbilities: 1
-  Editor_Tabs1: 0
+  Editor_Tabs1: 1
   Editor_Tabs2: 4
   SelectedMode: 1
   hitLayer:
@@ -2374,12 +2375,12 @@ MonoBehaviour:
   triggerInteraction: 2
   CloneStates: 1
   states:
-  - {fileID: 11400000, guid: 9e5aefac8b1ec304fb1bd79e3aa24920, type: 2}
-  - {fileID: 11400000, guid: dfa6ae05c7b99b84aadab04ae65de308, type: 2}
-  - {fileID: 11400000, guid: 46c70948611cc0f499b8c457adc84273, type: 2}
-  - {fileID: 11400000, guid: 0a19af162a8463b499022d73a235b787, type: 2}
-  - {fileID: 11400000, guid: ce2556a23a4afaa4dadd2c6e05d493d7, type: 2}
-  - {fileID: 11400000, guid: dd771b0175a1a0549a6f39c81e1d61d5, type: 2}
+  - {fileID: 11400000, guid: 47707b9527be4a641b30094059c21f06, type: 2}
+  - {fileID: 11400000, guid: 73ba402fbb0bc0748a245f444b33c734, type: 2}
+  - {fileID: 11400000, guid: 97951d62147cd4846a268cd04ad92757, type: 2}
+  - {fileID: 11400000, guid: 3ffa718324bcd2a4ca4dea7f2bbe90c1, type: 2}
+  - {fileID: 11400000, guid: 498010fc89e16874491210d1129d61a4, type: 2}
+  - {fileID: 11400000, guid: 972cda9553ea5a049a90b4a87e646322, type: 2}
   OnEnterExitStates: []
   OnEnterExitStances: []
   OverrideStartState: {fileID: 0}
@@ -3267,7 +3268,8 @@ MonoBehaviour:
         ConstantValue: 4
         Variable: {fileID: 0}
   - name: Swim
-    states: []
+    states:
+    - {fileID: 11400000, guid: 7e364e53b77644c47aa3abdaa2e2c08c, type: 2}
     StartVerticalIndex:
       UseConstant: 1
       ConstantValue: 1
@@ -3277,7 +3279,7 @@ MonoBehaviour:
       ConstantValue: 2
       Variable: {fileID: 0}
     Speeds:
-    - name: SpeedName
+    - name: Swim
       nameHash: 1429068242
       Vertical:
         UseConstant: 1
@@ -3285,7 +3287,38 @@ MonoBehaviour:
         Variable: {fileID: 0}
       position:
         UseConstant: 1
+        ConstantValue: 2
+        Variable: {fileID: 0}
+      lerpPosition:
+        UseConstant: 1
+        ConstantValue: 2
+        Variable: {fileID: 0}
+      animator:
+        UseConstant: 1
+        ConstantValue: 1
+        Variable: {fileID: 0}
+      lerpAnimator:
+        UseConstant: 1
+        ConstantValue: 4
+        Variable: {fileID: 0}
+      rotation:
+        UseConstant: 1
         ConstantValue: 0
+        Variable: {fileID: 0}
+      sprint: 1
+      lerpRotation:
+        UseConstant: 1
+        ConstantValue: 4
+        Variable: {fileID: 0}
+    - name: Swim Sprint
+      nameHash: 1429068242
+      Vertical:
+        UseConstant: 1
+        ConstantValue: 1
+        Variable: {fileID: 0}
+      position:
+        UseConstant: 1
+        ConstantValue: 3
         Variable: {fileID: 0}
       lerpPosition:
         UseConstant: 1
@@ -4014,6 +4047,24 @@ MonoBehaviour:
       m_Calls: []
   TasksTimeElapsed: []
   DecisionsTimeElapsed: []
+--- !u!114 &1888875298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705576756844995588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de963c5b6ffa62741a32c176d256a2ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ModeID: {fileID: 11400000, guid: 1286867ad3c4cdd4baacac3373aff92c, type: 2}
+  AnimalsOnly: 1
+  LookRadius: 2
+  AlignTime: 0.1
+  debugColor: {r: 1, g: 0.5, b: 0, a: 0.2}
+  animal: {fileID: 7835176214384265677}
 --- !u!1 &5705607091517537122
 GameObject:
   m_ObjectHideFlags: 0
