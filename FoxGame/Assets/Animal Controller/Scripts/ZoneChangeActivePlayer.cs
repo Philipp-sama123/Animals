@@ -204,7 +204,7 @@ namespace MalbersAnimations.Controller
 
             GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
             newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
-
+            newAnimal.GetComponent<MAnimal>().SetMainPlayer(); 
             CurrentAnimal.GetComponent<MEventListener>().enabled = false;
             CurrentAnimal.GetComponent<MAnimal>().isPlayer.Value = false;
 

@@ -1264,6 +1264,8 @@ GameObject:
   - component: {fileID: 5386940462969705752}
   - component: {fileID: 2142751577}
   - component: {fileID: 2142751578}
+  - component: {fileID: 3217713547990930762}
+  - component: {fileID: 7485323083135937052}
   m_Layer: 8
   m_Name: ACFox@Mobile
   m_TagString: Animal
@@ -1345,7 +1347,7 @@ MonoBehaviour:
   ModeShowAbilities: 1
   Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 3
+  SelectedMode: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1470,6 +1472,28 @@ MonoBehaviour:
       Index:
         UseConstant: 1
         ConstantValue: 1
+        Variable: {fileID: 0}
+      OverrideProp: 0
+      OverrideProperties:
+        Status: 0
+        HoldByTime:
+          UseConstant: 0
+          ConstantValue: 0
+          Variable: {fileID: 0}
+        affect: 0
+        affectStates: []
+        InterruptTime: 0
+        ShowEvents: 0
+        OnEnter:
+          m_PersistentCalls:
+            m_Calls: []
+        OnExit:
+          m_PersistentCalls:
+            m_Calls: []
+    - Name: Attack Claws
+      Index:
+        UseConstant: 1
+        ConstantValue: 2
         Variable: {fileID: 0}
       OverrideProp: 0
       OverrideProperties:
@@ -3566,6 +3590,33 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   debug: 1
+--- !u!114 &3217713547990930762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451798368540637177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8255a361f023a45b622c8f8f63c5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7485323083135937052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451798368540637177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149655f5fc18e11419380005a139e5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppingDistance: 0.8
+  center: {x: 0, y: 0, z: 0.25}
+  pointType: 0
 --- !u!1 &5451799072636722701
 GameObject:
   m_ObjectHideFlags: 0
