@@ -1291,6 +1291,7 @@ Transform:
   - {fileID: 6961624956758052239}
   - {fileID: 1939355808}
   - {fileID: 2000942155}
+  - {fileID: 2133455358601979540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1347,7 +1348,7 @@ MonoBehaviour:
   ModeShowAbilities: 1
   Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 0
+  SelectedMode: 2
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1682,10 +1683,21 @@ MonoBehaviour:
       affect: 2
       affectStates: []
       InterruptTime: 0
-      ShowEvents: 0
+      ShowEvents: 1
       OnEnter:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 3217713547990930762}
+            m_MethodName: AnimalDamaged
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnExit:
         m_PersistentCalls:
           m_Calls: []
@@ -3602,6 +3614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8255a361f023a45b622c8f8f63c5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplashEffect: {fileID: 2130170664621436474}
 --- !u!114 &7485323083135937052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5277,3 +5290,72 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   triggerInteraction: 2
+--- !u!1001 &2128698834375902546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5450519920420142145}
+    m_Modifications:
+    - target: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_Name
+      value: FX_BloodSplat_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+--- !u!1 &2130170664621436474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2128698834375902546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2133455358601979540 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2128698834375902546}
+  m_PrefabAsset: {fileID: 0}

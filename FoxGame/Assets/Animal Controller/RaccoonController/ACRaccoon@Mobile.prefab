@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 828832138}
   - component: {fileID: 828832149}
   - component: {fileID: 828832150}
+  - component: {fileID: 1494831563}
   m_Layer: 8
   m_Name: ACRaccoon@Mobile
   m_TagString: Animal
@@ -846,6 +847,7 @@ Transform:
   - {fileID: 4982896730330369655}
   - {fileID: 4987748225215222825}
   - {fileID: 1893330411}
+  - {fileID: 4826958268767898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -886,7 +888,7 @@ MonoBehaviour:
   ModeShowAbilities: 1
   Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 0
+  SelectedMode: 3
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -905,32 +907,10 @@ MonoBehaviour:
   - ID: {fileID: 11400000, guid: 9dbddb488d83ba6498563c24f71c786a, type: 2}
     OnEnter:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89, type: 2}
-          m_MethodName: set_Value
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     OnExit:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89, type: 2}
-          m_MethodName: set_Value
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   OverrideStartState: {fileID: 0}
   isPlayer:
     UseConstant: 1
@@ -1009,7 +989,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   modes:
   - active: 1
-    ignoreLowerModes: 0
+    ignoreLowerModes: 1
     AnimationTag: Attack1
     Input: Attack1
     ID: {fileID: 11400000, guid: e366e24250d6a9a408d5d5fa02ba3fe1, type: 2}
@@ -1042,7 +1022,7 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 1
         Variable: {fileID: 0}
-      OverrideProp: 0
+      OverrideProp: 1
       OverrideProperties:
         Status: 0
         HoldByTime:
@@ -1054,7 +1034,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
         - {fileID: 11400000, guid: 3787b6d94d5454740bf36d57436185b0, type: 2}
         InterruptTime: 0
-        ShowEvents: 0
+        ShowEvents: 1
         OnEnter:
           m_PersistentCalls:
             m_Calls: []
@@ -1078,7 +1058,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 3787b6d94d5454740bf36d57436185b0, type: 2}
         - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
         InterruptTime: 0
-        ShowEvents: 0
+        ShowEvents: 1
         OnEnter:
           m_PersistentCalls:
             m_Calls: []
@@ -1102,25 +1082,13 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
         - {fileID: 11400000, guid: 3787b6d94d5454740bf36d57436185b0, type: 2}
         InterruptTime: 0
-        ShowEvents: 1
+        ShowEvents: 0
         OnEnter:
           m_PersistentCalls:
             m_Calls: []
         OnExit:
           m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 11400000, guid: 9ea54021b0d9e4f4391471967bd41a74,
-                type: 2}
-              m_MethodName: set_Value
-              m_Mode: 3
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 4
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
+            m_Calls: []
     - Name: Attack Paw Left
       Index:
         UseConstant: 1
@@ -1144,19 +1112,7 @@ MonoBehaviour:
             m_Calls: []
         OnExit:
           m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 11400000, guid: 9ea54021b0d9e4f4391471967bd41a74,
-                type: 2}
-              m_MethodName: set_Value
-              m_Mode: 3
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 3
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
+            m_Calls: []
     - Name: Attack Paws
       Index:
         UseConstant: 1
@@ -1182,17 +1138,17 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls: []
     abilityIndex:
-      UseConstant: 0
+      UseConstant: 1
       ConstantValue: -1
-      Variable: {fileID: 11400000, guid: 9ea54021b0d9e4f4391471967bd41a74, type: 2}
+      Variable: {fileID: 0}
     DefaultIndex:
-      UseConstant: 0
+      UseConstant: 1
       ConstantValue: -1
-      Variable: {fileID: 11400000, guid: 9ea54021b0d9e4f4391471967bd41a74, type: 2}
+      Variable: {fileID: 0}
     OnAbilityIndex:
       m_PersistentCalls:
         m_Calls: []
-    ResetToDefault: 0
+    ResetToDefault: 1
     allowRotation: 1
     allowMovement: 1
     showGeneral: 1
@@ -1247,19 +1203,7 @@ MonoBehaviour:
         ShowEvents: 1
         OnEnter:
           m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89,
-                type: 2}
-              m_MethodName: set_Value
-              m_Mode: 3
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 2
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
+            m_Calls: []
         OnExit:
           m_PersistentCalls:
             m_Calls: []
@@ -1284,8 +1228,7 @@ MonoBehaviour:
         OnEnter:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89,
-                type: 2}
+            - m_Target: {fileID: 0}
               m_MethodName: set_Value
               m_Mode: 3
               m_Arguments:
@@ -1304,7 +1247,7 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 3
         Variable: {fileID: 0}
-      OverrideProp: 0
+      OverrideProp: 1
       OverrideProperties:
         Status: 0
         HoldByTime:
@@ -1328,7 +1271,7 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 4
         Variable: {fileID: 0}
-      OverrideProp: 0
+      OverrideProp: 1
       OverrideProperties:
         Status: 0
         HoldByTime:
@@ -1350,7 +1293,7 @@ MonoBehaviour:
         UseConstant: 1
         ConstantValue: 5
         Variable: {fileID: 0}
-      OverrideProp: 0
+      OverrideProp: 1
       OverrideProperties:
         Status: 0
         HoldByTime:
@@ -1360,7 +1303,7 @@ MonoBehaviour:
         affect: 0
         affectStates: []
         InterruptTime: 0
-        ShowEvents: 0
+        ShowEvents: 1
         OnEnter:
           m_PersistentCalls:
             m_Calls: []
@@ -1368,13 +1311,13 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls: []
     abilityIndex:
-      UseConstant: 0
+      UseConstant: 1
       ConstantValue: -1
-      Variable: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89, type: 2}
+      Variable: {fileID: 0}
     DefaultIndex:
-      UseConstant: 0
+      UseConstant: 1
       ConstantValue: -1
-      Variable: {fileID: 11400000, guid: 20c2d91d91ef91f498d8953b999e9c89, type: 2}
+      Variable: {fileID: 0}
     OnAbilityIndex:
       m_PersistentCalls:
         m_Calls: []
@@ -1636,10 +1579,21 @@ MonoBehaviour:
       affect: 2
       affectStates: []
       InterruptTime: 0
-      ShowEvents: 0
+      ShowEvents: 1
       OnEnter:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 828832150}
+            m_MethodName: AnimalDamaged
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       OnExit:
         m_PersistentCalls:
           m_Calls: []
@@ -2416,7 +2370,18 @@ MonoBehaviour:
         m_Calls: []
     OnDegenereate:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 828832150}
+          m_MethodName: OnHealthDecreased
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - active: 1
     ID: {fileID: 11400000, guid: b2543cc1ca487114b99b7e0b4b3018d5, type: 2}
     value:
@@ -2806,18 +2771,6 @@ MonoBehaviour:
     ResponseBool:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4984449875337355281}
-          m_MethodName: Mode_Pin
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: e366e24250d6a9a408d5d5fa02ba3fe1,
-              type: 2}
-            m_ObjectArgumentAssemblyTypeName: MalbersAnimations.ModeID, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 4984449875337355281}
           m_MethodName: Mode_Pin_Input
           m_Mode: 0
@@ -3677,6 +3630,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8255a361f023a45b622c8f8f63c5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplashEffect: {fileID: 1489432295020084}
+--- !u!114 &1494831563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984449875337355287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149655f5fc18e11419380005a139e5e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppingDistance: 0.8
+  center: {x: 0, y: 0, z: -0.1}
+  pointType: 0
 --- !u!1 &4984468883050595287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5280,3 +5249,76 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   triggerInteraction: 2
+--- !u!1001 &1437138268
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4982845606617660235}
+    m_Modifications:
+    - target: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_Name
+      value: FX_BloodSplat_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+--- !u!1 &1489432295020084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1437138268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4826958268767898 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4826957403153350, guid: 4430919f14c50f84085d287cbcb2c30e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1437138268}
+  m_PrefabAsset: {fileID: 0}

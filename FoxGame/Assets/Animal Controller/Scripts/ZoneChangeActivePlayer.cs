@@ -13,10 +13,6 @@ namespace MalbersAnimations.Controller
     /// <summary>When an animal Enters this Zone it will change to an other active animal</summary>
     public class ZoneChangeActivePlayer : MonoBehaviour, IDestination, IInteractable
     {
-        public ZoneType zoneType = ZoneType.Mode;
-        public StateAction stateAction = StateAction.Activate;
-        public StanceAction stanceAction = StanceAction.Enter;
-
         [SerializeField] private GameObject animalPrefab;
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private CinemachineVirtualCamera activeCamera;
@@ -31,37 +27,17 @@ namespace MalbersAnimations.Controller
         /// <summary> Mode Index Value</summary>
         public int ModeIndex => modeID.ID == 4 ? ActionID.ID : modeIndex.Value;
 
-        /// <summary>Current Animal the Zone is using </summary>
         public MAnimal CurrentAnimal { get; internal set; }
         protected List<Collider> animal_Colliders = new List<Collider>();
 
-        public float AnimHeight = 0;
         public bool RemoveAnimalOnActive = false;
-
-        [UnityEngine.Serialization.FormerlySerializedAs("StatModifier")]
-        public StatModifier StatModifierOnActive;
-        public StatModifier StatModifierOnEnter;
-        public StatModifier StatModifierOnExit;
 
         public AnimalEvent OnEnter = new AnimalEvent();
         public AnimalEvent OnExit = new AnimalEvent();
         public AnimalEvent OnZoneActivation = new AnimalEvent();
 
         protected Collider ZoneCollider;
-        protected Stats AnimalStats;
-
-        /// <summary>Keep a Track of all the Zones on the Scene </summary>
-        public static List<ZoneChangeActivePlayer> Zones;
-
-        /// <summary>Is the zone a Mode Zone</summary>
-        public bool IsMode => zoneType == ZoneType.Mode;
-
-        /// <summary>Is the zone a Mode Zone</summary>
-        public bool IsState => zoneType == ZoneType.State;
-
-    
-
-
+        private ZoneType zoneType = ZoneType.Mode;
         void OnTriggerEnter(Collider other)
         {
             if (other.isTrigger) return;
@@ -84,9 +60,7 @@ namespace MalbersAnimations.Controller
                     animal_Colliders = new List<Collider>();                            //Clean the colliders
 
                 CurrentAnimal = newAnimal;                                             //Set a new Animal
-                AnimalStats = CurrentAnimal.GetComponentInParent<Stats>();
 
-                StatModifierOnEnter.ModifyStat(AnimalStats);                         //Modify the stats when exit
                 OnEnter.Invoke(CurrentAnimal);
                 ActivateZone();
             }
@@ -108,13 +82,6 @@ namespace MalbersAnimations.Controller
             if (animal_Colliders.Count == 0)                                        //When all the collides are removed from the list..
             {
                 OnExit.Invoke(CurrentAnimal);                                      //Invoke On Exit when all animal's colliders has exited the Zone
-                StatModifierOnExit.ModifyStat(AnimalStats);                         //Modify the stats when exit
-
-                /*                if (zoneType == ZoneType.Stance && stanceAction == StanceAction.Stay && CurrentAnimal.Stance == stanceID.ID)
-                                {
-                                    CurrentAnimal.Stance_Reset();
-                                }
-                */
 
                 ResetStoredAnimal();
             }
@@ -123,26 +90,14 @@ namespace MalbersAnimations.Controller
 
         /// <summary>Activate the Zone depending the Zone Type</summary>
         /// <param name="forced"></param>
-        public virtual void ActivateZone(bool forced = false)
+        public virtual void ActivateZone()
         {
             if (CurrentAnimal)
             {
                 CurrentAnimal.IsOnZone = true;
-                CurrentAnimal.SetAnimHeight(AnimHeight); //Set the correct height for the Animal Animation
             }
-            switch (zoneType)
-            {
-                case ZoneType.Mode:
-                    ActivateModeZone(forced);
-                    break;
-                    /*          case ZoneType.State:
-                            ActivateStateZone(); //State Zones does not require to be delay or prepared to be activated
-                            break;
-                           case ZoneType.Stance:
-                                     ActivateStanceZone(); //State Zones does not require to be delay or prepared to be activated
-                                     break;
-                            */
-            }
+          
+            ActivateModeZone();
         }
 
         public virtual void ResetStoredAnimal()
@@ -160,7 +115,6 @@ namespace MalbersAnimations.Controller
             }
 
             CurrentAnimal = null;
-            AnimalStats = null;
             animal_Colliders = new List<Collider>();                            //Clean the colliders
         }
 
@@ -171,7 +125,7 @@ namespace MalbersAnimations.Controller
                 CurrentAnimal.MovementAxis = CurrentAnimal.MovementAxisSmoothed = Vector3.zero;
         }
 
-        private void ActivateModeZone(bool forced)
+        private void ActivateModeZone()
         {
             var PreMode = CurrentAnimal.Mode_Get(modeID);
 
@@ -180,52 +134,45 @@ namespace MalbersAnimations.Controller
                 Debug.LogWarning($"<B>[{name}]</B> cannot be activated by <B>[{CurrentAnimal.name}]</B>. It does not have that <B>[mode]</B> or <B>[ModeIndex]</B>");
                 return;
             }
-
-            if (forced)
-            {
-                CurrentAnimal.Mode_Activate(modeID.ID, ModeIndex);
-                OnZONEActive();
-            }
-            else//In Case the Zone is not Automatic
-            {
-                if (PreMode != null)
-                {
-                    PreMode.AbilityIndex = ModeIndex;
-                    PreMode.GlobalProperties.OnEnter.AddListener(OnZONEActive);
-                }
-            }
+            PreMode.AbilityIndex = ModeIndex;
+            PreMode.GlobalProperties.OnEnter.AddListener(OnZONEActive);
         }
-
 
         void OnZONEActive()
         {
-            StatModifierOnActive.ModifyStat(AnimalStats);
             OnZoneActivation.Invoke(CurrentAnimal);
 
-            GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
-            newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
-            newAnimal.GetComponent<MAnimal>().SetMainPlayer(); 
+            InstantiateNewAnimal();
+            DisableOldAnimal();
+            DestroyOldAnimal();
+
+            Zone_Destroy(0);
+        }
+
+        private static void DestroyOldAnimal()
+        {
+            AnimalController[] players = FindObjectsOfType<AnimalController>();
+            foreach (AnimalController player in players)
+            {
+                if (!player.IsPlayerActive) player.DestroyGameObject(3);
+            }
+        }
+
+        private void DisableOldAnimal()
+        {
             CurrentAnimal.GetComponent<MEventListener>().enabled = false;
             CurrentAnimal.GetComponent<MAnimal>().isPlayer.Value = false;
+            CurrentAnimal.GetComponent<AnimalController>().IsPlayerActive = false;
+        }
 
+        private void InstantiateNewAnimal()
+        {
+            GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
+            newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
+            newAnimal.GetComponent<MAnimal>().SetMainPlayer();
 
             activeCamera.LookAt = newAnimal.transform;
             activeCamera.Follow = newAnimal.transform;
-
-            AnimalController player = GameObject.FindObjectOfType<AnimalController>();
-            if (player != null) player.DestroyGameObject(3);  // destroy active player
-            Zone_Destroy(0);
-
-            // destroy zone
-            //  --> Death(?)   animalToDisable.State_Activate(stateID); 
-
-            //    GameObject obj = GameObject.Find("ACRaccoon@Mobile");
-            //    if (obj != null) Destroy(obj);
-
-            // if (RemoveAnimalOnActive)
-            //{
-            //   ResetStoredAnimal();
-            // }
         }
 
         /// <summary> Destroy the Zone after x Time</summary>
@@ -241,16 +188,12 @@ namespace MalbersAnimations.Controller
  
         public void ResetInteraction() {/* Do nothing  */}
 
-        public void Interact() { ActivateZone(true); }
+        public void Interact() { ActivateZone(); }
 
         public void TargetArrived(GameObject target)
         {
             CurrentAnimal = target.GetComponent<MAnimal>();
-            ActivateZone(true);
+            ActivateZone();
         }
-
-
-        [HideInInspector] public bool EditorShowEvents = false;
-        [HideInInspector] public bool ShowStatModifiers = false;
     }
 }

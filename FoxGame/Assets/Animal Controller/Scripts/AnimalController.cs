@@ -7,15 +7,13 @@ using UnityEngine;
 public class AnimalController : MonoBehaviour
 {
     [SerializeField] GameObject bloodSplashEffect;
-    private ParticleSystem bloodSplash;
-    private MAnimal mAnimal;
-    private Stats stats; 
+    private bool isPlayerActive = true;
+
+    public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
 
     void Start()
     {
-        bloodSplash = bloodSplashEffect.GetComponent<ParticleSystem>();
-        mAnimal = gameObject.GetComponentInParent<MAnimal>();
-        bloodSplash.Play(false);
+      bloodSplashEffect.GetComponent<ParticleSystem>().Stop();
     }
      void Update()
     {
@@ -30,15 +28,14 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    public void OnHealthDecreased()
+    public void AnimalDamaged()
     {
-        bloodSplash.Play(true);
-        Debug.LogError("bloodSplash ....");
-        new WaitForSeconds(2);
-        Debug.LogError("bloodSplash ....");
+        PlayBloodSplashEffect();
+    }
+
+    private void PlayBloodSplashEffect()
+    {
+        ParticleSystem bloodSplash = bloodSplashEffect.GetComponent<ParticleSystem>();
         bloodSplash.Play();
-
-     
-
     }
 }
