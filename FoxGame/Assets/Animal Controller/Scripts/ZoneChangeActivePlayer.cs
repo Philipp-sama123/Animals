@@ -40,13 +40,13 @@ namespace MalbersAnimations.Controller
         private ZoneType zoneType = ZoneType.Mode;
         void OnTriggerEnter(Collider other)
         {
-            if (other.isTrigger) return;
+            // if (other.isTrigger) return;
 
-            if (!MalbersTools.CollidersLayer(other, LayerMask.GetMask("Animal"))) return;           //Just accept animal layer only
+            // if (!MalbersTools.CollidersLayer(other, LayerMask.GetMask("Animal"))) return;           //Just accept animal layer only
 
             MAnimal newAnimal = other.GetComponentInParent<MAnimal>();                              //Get the animal on the entering collider
 
-            if (!newAnimal) return;                                                                 //If there's no animal do nothing
+            // if (!newAnimal) return;                                                                 //If there's no animal do nothing
 
             if (animal_Colliders.Find(coll => coll == other) == null)                               //if the entering collider is not already on the list add it
             {
@@ -114,7 +114,7 @@ namespace MalbersAnimations.Controller
                 }
             }
 
-            CurrentAnimal = null;
+            //CurrentAnimal = null;
             animal_Colliders = new List<Collider>();                            //Clean the colliders
         }
 
@@ -128,7 +128,6 @@ namespace MalbersAnimations.Controller
         private void ActivateModeZone()
         {
             var PreMode = CurrentAnimal.Mode_Get(modeID);
-
             if (PreMode == null || !PreMode.HasAbilityIndex(ModeIndex)) //If the Animal does not have that mode or that Ability Index exti
             {
                 Debug.LogWarning($"<B>[{name}]</B> cannot be activated by <B>[{CurrentAnimal.name}]</B>. It does not have that <B>[mode]</B> or <B>[ModeIndex]</B>");
@@ -141,9 +140,9 @@ namespace MalbersAnimations.Controller
         void OnZONEActive()
         {
             OnZoneActivation.Invoke(CurrentAnimal);
+            DisableOldAnimal();
 
             InstantiateNewAnimal();
-            DisableOldAnimal();
             DestroyOldAnimal();
 
             Zone_Destroy(0);
@@ -168,8 +167,11 @@ namespace MalbersAnimations.Controller
         private void InstantiateNewAnimal()
         {
             GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
-            newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
+          //  newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
             newAnimal.GetComponent<MAnimal>().SetMainPlayer();
+
+            if (!activeCamera)
+                activeCamera = FindObjectOfType<CinemachineVirtualCamera>();
 
             activeCamera.LookAt = newAnimal.transform;
             activeCamera.Follow = newAnimal.transform;
@@ -190,10 +192,5 @@ namespace MalbersAnimations.Controller
 
         public void Interact() { ActivateZone(); }
 
-        public void TargetArrived(GameObject target)
-        {
-            CurrentAnimal = target.GetComponent<MAnimal>();
-            ActivateZone();
-        }
     }
 }

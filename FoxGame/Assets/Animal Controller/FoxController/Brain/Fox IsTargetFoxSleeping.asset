@@ -27,5 +27,5 @@ MonoBehaviour:
   ModeID: {fileID: 11400000, guid: 5ac0955c0eb28a242ae6f5bf2d6a4744, type: 2}
   Ability:
     UseConstant: 1
-    ConstantValue: 6
+    ConstantValue: -1
     Variable: {fileID: 11400000, guid: 8341b18f464fb4f4aad87488fc02a239, type: 2}

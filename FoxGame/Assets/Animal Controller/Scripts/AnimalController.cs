@@ -1,5 +1,6 @@
 ﻿using MalbersAnimations;
 using MalbersAnimations.Controller;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ using UnityEngine;
 public class AnimalController : MonoBehaviour
 {
     [SerializeField] GameObject bloodSplashEffect;
+    [SerializeField] AudioSource hitSound;
+
     private bool isPlayerActive = true;
 
     public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
@@ -31,6 +34,12 @@ public class AnimalController : MonoBehaviour
     public void AnimalDamaged()
     {
         PlayBloodSplashEffect();
+        PlayHitSound();
+    }
+
+    private void PlayHitSound()
+    {
+        hitSound.PlayOneShot(hitSound.clip);
     }
 
     private void PlayBloodSplashEffect()
