@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 3
   AttackActivation:
     minValue: 0.3041004
     maxValue: 0.49993378
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 4
   AttackActivation:
     minValue: 0.3041004
     maxValue: 0.49993378
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 2
   AttackActivation:
     minValue: 0.34505007
     maxValue: 0.446737
@@ -843,10 +843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 2
   AttackActivation:
-    minValue: 0.34505007
-    maxValue: 0.446737
+    minValue: 0.24737915
+    maxValue: 0.55192107
 --- !u!114 &114111011328179200
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2088,7 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 4
   AttackActivation:
     minValue: 0.3041004
     maxValue: 0.49993378
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab18b2853af874d9e29a0851427b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTrigger: 1
+  AttackTrigger: 3
   AttackActivation:
     minValue: 0.3041004
     maxValue: 0.49993378
@@ -3224,8 +3224,8 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: 3dfc40c3621fb004ba2ba9d2e6f682d7, type: 3}
   playOnEnter: 1
-  playOnTime: 0
   stopOnExit: 0
+  playOnTime: 0
   NormalizedTime: 0.5
   pitch: 1
   volume: 1
@@ -3293,7 +3293,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 0
   ExitModifier:
     modify: 1024
     RootMotion: 0
@@ -3308,7 +3307,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 1
 --- !u!114 &114723189345969434
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -4012,7 +4010,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 0
   ExitModifier:
     modify: 1024
     RootMotion: 0
@@ -4027,7 +4024,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 1
 --- !u!114 &114961283836274998
 MonoBehaviour:
   m_ObjectHideFlags: 3

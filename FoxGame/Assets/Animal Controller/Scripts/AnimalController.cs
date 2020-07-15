@@ -7,9 +7,14 @@ using UnityEngine;
 
 public class AnimalController : MonoBehaviour
 {
+    public enum AnimalType
+    {
+        Fox,
+        Raccoon
+    }
     [SerializeField] GameObject bloodSplashEffect;
     [SerializeField] AudioSource hitSound;
-
+    [SerializeField] AnimalType animalType; 
     private bool isPlayerActive = true;
 
     public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
