@@ -1698,7 +1698,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 0
   ExitModifier:
     modify: 1024
     RootMotion: 0
@@ -1713,7 +1712,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 1
 --- !u!114 &114514024048454486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2204,8 +2202,8 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: 3dfc40c3621fb004ba2ba9d2e6f682d7, type: 3}
   playOnEnter: 1
-  playOnTime: 0
   stopOnExit: 0
+  playOnTime: 0
   NormalizedTime: 0.5
   pitch: 1
   volume: 1

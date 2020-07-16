@@ -30,7 +30,6 @@ MonoBehaviour:
     IgnoreLowerStates: 0
     LockMovement: 0
     LockInput: 0
-    Colliders: 1
   ExitFrame: 0
   SleepFromState: []
   SleepFromMode: []
@@ -51,7 +50,6 @@ MonoBehaviour:
       IgnoreLowerStates: 0
       LockMovement: 0
       LockInput: 0
-      Colliders: 0
   debug: 0
   AirControl:
     UseConstant: 0
@@ -71,7 +69,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   FallRayForward:
     UseConstant: 1
-    ConstantValue: 0.03
+    ConstantValue: 0.1
     Variable: {fileID: 0}
   fallRayMultiplier:
     UseConstant: 1
@@ -91,10 +89,4 @@ MonoBehaviour:
     ConstantValue: 10
     Variable: {fileID: 0}
   LandTag: Land
-  AffectStat:
-    ID: {fileID: 0}
-    modify: 0
-    Value:
-      UseConstant: 1
-      ConstantValue: 1
-      Variable: {fileID: 0}
+  AffectStat: {fileID: 0}

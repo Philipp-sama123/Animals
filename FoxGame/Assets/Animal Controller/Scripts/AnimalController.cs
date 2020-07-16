@@ -4,20 +4,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum AnimalType
+{
+    Fox,
+    Raccoon
+}
 public class AnimalController : MonoBehaviour
 {
-    public enum AnimalType
-    {
-        Fox,
-        Raccoon
-    }
     [SerializeField] GameObject bloodSplashEffect;
     [SerializeField] AudioSource hitSound;
-    [SerializeField] AnimalType animalType; 
+    [SerializeField] private AnimalType animalType; 
     private bool isPlayerActive = true;
 
     public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
+    public AnimalType AnimalType { get => animalType; set => animalType = value; }
 
     void Start()
     {
