@@ -34,6 +34,8 @@ TagManager:
   - Interactable
   - AIAction
   - Animal
+  - FollowCamera
+  - FreeLookCamera
   layers:
   - Default
   - TransparentFX

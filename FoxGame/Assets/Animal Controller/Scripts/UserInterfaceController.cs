@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class UserInterfaceController : MonoBehaviour
 {
     [SerializeField] private GameObject controlAlignmentRaccoon;
     [SerializeField] private GameObject controlAlignmentFox;
+    private CinemachineFreeLook freeLookCamera;
     private AnimalType activePlayerType;
     void Start()
     {
+        freeLookCamera = FindObjectOfType<CinemachineFreeLook>();
         setControlsForActiveAnimal();
     }
 
@@ -42,4 +45,24 @@ public class UserInterfaceController : MonoBehaviour
         controlAlignmentRaccoon.SetActive(false);
         controlAlignmentFox.SetActive(true);
     }
+    private bool IsPointerOverUIObject()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return true;
+
+        for (int touchIndex = 0; touchIndex < Input.touchCount; touchIndex++)
+        {
+            Touch touch = Input.GetTouch(touchIndex);
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                return true;
+        }
+
+        return false;
+    }
+
+    public void LOGStuff()
+    {
+        Debug.LogError("PRESSED!!");
+    }
+
 }

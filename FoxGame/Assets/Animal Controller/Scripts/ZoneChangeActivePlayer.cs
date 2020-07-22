@@ -15,7 +15,8 @@ namespace MalbersAnimations.Controller
     {
         [SerializeField] private GameObject animalPrefab;
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private CinemachineVirtualCamera activeCamera;
+        private CinemachineVirtualCamera followCamera;
+        private CinemachineFreeLook freeLookCamera;
 
         public ModeID modeID;
         public StateID stateID;
@@ -46,7 +47,7 @@ namespace MalbersAnimations.Controller
 
             MAnimal newAnimal = other.GetComponentInParent<MAnimal>();                              //Get the animal on the entering collider
 
-            // if (!newAnimal) return;                                                                 //If there's no animal do nothing
+            if (!newAnimal) return;                                                                 //If there's no animal do nothing
 
             if (animal_Colliders.Find(coll => coll == other) == null)                               //if the entering collider is not already on the list add it
             {
@@ -96,7 +97,7 @@ namespace MalbersAnimations.Controller
             {
                 CurrentAnimal.IsOnZone = true;
             }
-          
+
             ActivateModeZone();
         }
 
@@ -140,14 +141,17 @@ namespace MalbersAnimations.Controller
         void OnZONEActive()
         {
             OnZoneActivation.Invoke(CurrentAnimal);
-            DisableOldAnimal();
 
-            InstantiateNewAnimal();
-            DestroyOldAnimal();
+            ChangeAnimal();
 
             Zone_Destroy(0);
         }
-
+        private void ChangeAnimal()
+        {
+            DisableOldAnimal();
+            InstantiateNewAnimal();
+            DestroyOldAnimal();
+        }
         private static void DestroyOldAnimal()
         {
             AnimalController[] players = FindObjectsOfType<AnimalController>();
@@ -167,14 +171,17 @@ namespace MalbersAnimations.Controller
         private void InstantiateNewAnimal()
         {
             GameObject newAnimal = Instantiate(animalPrefab, spawnPoint.transform.position, Quaternion.identity);
-          //  newAnimal.GetComponent<MAnimal>().isPlayer.Value = true;
             newAnimal.GetComponent<MAnimal>().SetMainPlayer();
 
-            if (!activeCamera)
-                activeCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            freeLookCamera = GameObject.FindGameObjectWithTag("FreeLookCamera").GetComponent<CinemachineFreeLook>();
+            followCamera = GameObject.FindGameObjectWithTag("FollowCamera").GetComponent<CinemachineVirtualCamera>();
 
-            activeCamera.LookAt = newAnimal.transform;
-            activeCamera.Follow = newAnimal.transform;
+            followCamera.LookAt = newAnimal.transform;
+            followCamera.Follow = newAnimal.transform;
+
+            freeLookCamera.LookAt = newAnimal.transform;
+            freeLookCamera.Follow = newAnimal.transform;
+
         }
 
         /// <summary> Destroy the Zone after x Time</summary>
@@ -187,7 +194,7 @@ namespace MalbersAnimations.Controller
                 Destroy(gameObject, time);
             }
         }
- 
+
         public void ResetInteraction() {/* Do nothing  */}
 
         public void Interact() { ActivateZone(); }

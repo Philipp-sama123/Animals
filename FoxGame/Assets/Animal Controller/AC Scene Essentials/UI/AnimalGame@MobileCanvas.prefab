@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlAlignmentRaccoon: {fileID: 4826357378173608990}
   controlAlignmentFox: {fileID: 8382856440723468585}
+  freeLookCamera: {fileID: 0}
 --- !u!1 &4826357378173608990
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,12 +416,12 @@ PrefabInstance:
     - target: {fileID: 224047793685661504, guid: 6832f7ac83fb19a4299c4c70148e8d59,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -930
+      value: -945
       objectReference: {fileID: 0}
     - target: {fileID: 224047793685661504, guid: 6832f7ac83fb19a4299c4c70148e8d59,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: -365
       objectReference: {fileID: 0}
     - target: {fileID: 224047793685661504, guid: 6832f7ac83fb19a4299c4c70148e8d59,
         type: 3}
@@ -982,12 +983,12 @@ PrefabInstance:
     - target: {fileID: 224642455625426282, guid: 1700fc7c9d792b24d8c26c844c73e953,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 225
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 224642455625426282, guid: 1700fc7c9d792b24d8c26c844c73e953,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 225
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 224642455625426282, guid: 1700fc7c9d792b24d8c26c844c73e953,
         type: 3}
@@ -2349,12 +2350,12 @@ PrefabInstance:
     - target: {fileID: 5176881845769385692, guid: d6c5d40c0725d6a4ba09eef532725451,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -570
+      value: -555
       objectReference: {fileID: 0}
     - target: {fileID: 5176881845769385692, guid: d6c5d40c0725d6a4ba09eef532725451,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -350
+      value: -365
       objectReference: {fileID: 0}
     - target: {fileID: 5176881845769385692, guid: d6c5d40c0725d6a4ba09eef532725451,
         type: 3}
