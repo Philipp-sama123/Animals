@@ -35,6 +35,10 @@ public class AnimalController : MonoBehaviour
             Destroy(gameObject, time);
         }
     }
+    public GameObject ReturnParentGameObject()
+    {
+        return gameObject;
+    }
 
     public void AnimalDamaged()
     {

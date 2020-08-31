@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SciFiScene.unity
-    guid: afe70059c19e2034793155d940693397
-  - enabled: 0
-    path: Assets/SciFiCityTest.unity
-    guid: 44a6a2d278e0069409b0dc7050768407
   - enabled: 1
     path: Assets/Scenes/NatureScene.unity
     guid: b01b1920733c62e4990cacfa62da12af
+  - enabled: 0
+    path: Assets/Scenes/SciFiScene.unity
+    guid: afe70059c19e2034793155d940693397
   m_configObjects: {}

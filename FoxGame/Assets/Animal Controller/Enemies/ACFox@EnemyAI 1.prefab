@@ -4190,7 +4190,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: f02fffe0af81de44c994b948f6b74133, type: 2}
   remainInState: {fileID: 11400000, guid: 2ecb231e39609524b9fd193fb84c5f26, type: 2}
   RemoveAIOnDeath: 1
-  debug: 0
+  debug: 1
   OnTaskStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -4359,7 +4359,7 @@ MonoBehaviour:
     modify: 3
     Value:
       UseConstant: 1
-      ConstantValue: 10
+      ConstantValue: 7.5
       Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
@@ -4456,6 +4456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198104090543139058, guid: 4430919f14c50f84085d287cbcb2c30e,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}

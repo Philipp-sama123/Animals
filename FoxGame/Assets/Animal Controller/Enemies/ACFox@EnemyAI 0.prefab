@@ -4359,7 +4359,7 @@ MonoBehaviour:
     modify: 3
     Value:
       UseConstant: 1
-      ConstantValue: 10
+      ConstantValue: 7.5
       Variable: {fileID: 0}
   EnemyStatExit:
     ID: {fileID: 0}
@@ -4439,6 +4439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198615267133080452, guid: ed67c2cb8e3a7fb418c6fbb1b001dce2,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed67c2cb8e3a7fb418c6fbb1b001dce2, type: 3}
