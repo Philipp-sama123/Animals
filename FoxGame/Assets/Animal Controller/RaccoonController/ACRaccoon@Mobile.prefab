@@ -522,7 +522,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d03a470aacc00a4abf1c7b9c83fa8da, type: 2}
+  - {fileID: 2100000, guid: 424e41fe1bb145344ade017b33a8f033, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -608,26 +608,26 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights:
   - 0
   - 0
+  - 69.6
+  - 100
   - 0
   - 0
+  - 53.6
+  - 23.9
   - 0
+  - 54.3
+  - 100
+  - 93.4
   - 0
+  - 75.3
+  - 40.6
   - 0
+  - 45
+  - 25
   - 0
+  - 29
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 38.4
   - 0
   m_RootBone: {fileID: 4982936863060132541}
   m_AABB:
@@ -985,7 +985,7 @@ MonoBehaviour:
   ModeShowAbilities: 1
   Editor_Tabs1: 3
   Editor_Tabs2: 4
-  SelectedMode: 2
+  SelectedMode: 0
   hitLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1131,7 +1131,7 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 7370df9c769c2764381ad7c76eb3d949, type: 2}
         - {fileID: 11400000, guid: 3787b6d94d5454740bf36d57436185b0, type: 2}
         InterruptTime: 0
-        ShowEvents: 1
+        ShowEvents: 0
         OnEnter:
           m_PersistentCalls:
             m_Calls: []
@@ -2737,7 +2737,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4984449875337355287}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41eb9c17bc0693d448a412425a2d17b0, type: 3}
   m_Name: 
@@ -3501,33 +3501,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457598144384c694ab09dc093debbc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preset: {fileID: 0}
+  preset: {fileID: 11400000, guid: c0cf6227ddf9c434db9ba41e31700610, type: 2}
   LoadPresetOnStart: 1
   mesh: {fileID: 4958309466267971301}
   LODs: []
   blendShapes:
   - 0
   - 0
+  - 69.6
+  - 100
   - 0
   - 0
+  - 53.6
+  - 23.9
   - 0
+  - 54.3
+  - 100
+  - 93.4
   - 0
+  - 75.3
+  - 40.6
   - 0
+  - 45
+  - 25
   - 0
+  - 29
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 38.4
   - 0
   random: 0
   PinnedShape: 0
@@ -3556,7 +3556,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 424e41fe1bb145344ade017b33a8f033, type: 2}
     Linked: 0
     Master: 0
-    current: 0
+    current: 6
     HasLODs: 0
     LODs: []
     indexM: 0
