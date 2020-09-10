@@ -12,8 +12,10 @@ public enum AnimalType
 public class AnimalController : MonoBehaviour
 {
     [SerializeField] GameObject bloodSplashEffect;
+    [SerializeField] GameObject destroyEffect;
+
     [SerializeField] AudioSource hitSound;
-    [SerializeField] private AnimalType animalType; 
+    [SerializeField] private AnimalType animalType;
     private bool isPlayerActive = true;
 
     public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
@@ -21,15 +23,19 @@ public class AnimalController : MonoBehaviour
 
     void Start()
     {
-      bloodSplashEffect.GetComponent<ParticleSystem>().Stop();
+        bloodSplashEffect.GetComponent<ParticleSystem>().Stop();
     }
-     void Update()
+    void Update()
     {
     }
     public void DestroyGameObject(float time)
     {
+        destroyEffect.SetActive(true);
+       
         if (time == 0)
+        {
             Destroy(gameObject);
+        }
         else
         {
             Destroy(gameObject, time);

@@ -48,6 +48,7 @@ public class ChangeActivePlayer : MonoBehaviour
 
     public void ChangeAnimal()
     {
+        StartCoroutine(WaitThenRestoreTime(0.5f, 3f));
         DisableOldAnimal();
         InstantiateNewAnimal();
         DestroyOldAnimal();
@@ -79,7 +80,11 @@ public class ChangeActivePlayer : MonoBehaviour
 
     private void InstantiateNewAnimal()
     {
-        GameObject newAnimal = Instantiate(AnimalPrefab, new Vector3(CurrentAnimal.transform.position.x, CurrentAnimal.transform.position.y + 1, CurrentAnimal.transform.position.z), Quaternion.identity);
+        GameObject newAnimal = Instantiate(
+            AnimalPrefab,
+            new Vector3(CurrentAnimal.transform.position.x, CurrentAnimal.transform.position.y + 1, CurrentAnimal.transform.position.z),
+            CurrentAnimal.transform.rotation
+            );
 
         newAnimal.GetComponent<MAnimal>().SetMainPlayer();
         newAnimal.GetComponent<MEventListener>().enabled = true;
@@ -93,5 +98,14 @@ public class ChangeActivePlayer : MonoBehaviour
 
         freeLookCamera.LookAt = newAnimal.transform;
         freeLookCamera.Follow = newAnimal.transform;
+    }
+
+    private IEnumerator WaitThenRestoreTime(float slowdownFactor, float slowdownTime)
+    {
+        Time.timeScale = slowdownFactor;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        yield return new WaitForSecondsRealtime(slowdownTime);
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 }
