@@ -14,7 +14,11 @@ public class EnemyController : MonoBehaviour
     {
         deathParticleEffect.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSecondsRealtime(5);
-        Instantiate(enemyDeathPrefab, transform.position, transform.rotation);
+        Instantiate(
+            enemyDeathPrefab, 
+            transform.position, 
+            transform.rotation
+            );
         Destroy(gameObject);
     }
 }

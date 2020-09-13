@@ -11,11 +11,15 @@ public enum AnimalType
 }
 public class AnimalController : MonoBehaviour
 {
-    [SerializeField] GameObject bloodSplashEffect;
+    [SerializeField] ParticleSystem bloodSplashEffect;
+    [SerializeField] ParticleSystem rageModeEffect;
     [SerializeField] GameObject destroyEffect;
 
     [SerializeField] AudioSource hitSound;
     [SerializeField] private AnimalType animalType;
+
+    [SerializeField] float rageModeDuration = 60f;
+
     private bool isPlayerActive = true;
 
     public bool IsPlayerActive { get => isPlayerActive; set => isPlayerActive = value; }
@@ -25,13 +29,11 @@ public class AnimalController : MonoBehaviour
     {
         bloodSplashEffect.GetComponent<ParticleSystem>().Stop();
     }
-    void Update()
-    {
-    }
+
     public void DestroyGameObject(float time)
     {
         destroyEffect.SetActive(true);
-       
+
         if (time == 0)
         {
             Destroy(gameObject);
@@ -61,5 +63,23 @@ public class AnimalController : MonoBehaviour
     {
         ParticleSystem bloodSplash = bloodSplashEffect.GetComponent<ParticleSystem>();
         bloodSplash.Play();
+    }
+    public void StartRageMode()
+    {
+        StartCoroutine(RageMode());
+    }
+    private IEnumerator RageMode()
+    {
+        MAnimal animal = gameObject.GetComponent<MAnimal>();
+
+        animal.SprintSpeed.animator *= 2;
+        animal.SprintSpeed.position *= 2;
+
+        rageModeEffect.Play();
+        yield return new WaitForSecondsRealtime(rageModeDuration);
+
+        animal.SprintSpeed.animator /= 2;
+        animal.SprintSpeed.position /= 2;
+        rageModeEffect.Stop();
     }
 }
