@@ -1,5 +1,6 @@
 ﻿using MalbersAnimations;
 using MalbersAnimations.Controller;
+using MalbersAnimations.Scriptables;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,15 +72,12 @@ public class AnimalController : MonoBehaviour
     private IEnumerator RageMode()
     {
         MAnimal animal = gameObject.GetComponent<MAnimal>();
-
-        animal.SprintSpeed.animator *= 2;
-        animal.SprintSpeed.position *= 2;
-
         rageModeEffect.Play();
+        
+        animal.SpeedUp();
         yield return new WaitForSecondsRealtime(rageModeDuration);
+        animal.SpeedDown();
 
-        animal.SprintSpeed.animator /= 2;
-        animal.SprintSpeed.position /= 2;
         rageModeEffect.Stop();
     }
 }
